@@ -46,4 +46,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // This makes tap and hold keys (like Mod Tap) work better for fast typists, or for high TAPPING_TERM settings  
 #define PERMISSIVE_HOLD
 
-#define TAPPING_TERM 250
+#define TAPPING_TERM 220
