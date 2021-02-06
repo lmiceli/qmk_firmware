@@ -42,9 +42,9 @@
 #define QMK_KEYS_PER_SCAN 4
 
 // This makes tap and hold keys (like Mod Tap) work better for fast typists, or for high TAPPING_TERM settings  
-#define PERMISSIVE_HOLD
+//#define PERMISSIVE_HOLD
 
-#define TAPPING_TERM 199
+#define TAPPING_TERM 180
 
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
