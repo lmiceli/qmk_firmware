@@ -1,6 +1,9 @@
 /** @file keymap.c
  *  @brief keymap.c that includes key layout and keylogs functions
  */
+// qmk flash -kb crkbd -km lmiceli -bl avrdude
+// xq sale el bailecito ese? 
+// hay q darle a rgb_mod (mouse layer abajo derecha) hasta que quede el deseado
 
 #include "lmiceli.h"
 
@@ -10,8 +13,8 @@
 const uint16_t PROGMEM L_U__COMBO[] = {KC_L, KC_U, COMBO_END};
 const uint16_t PROGMEM H_COMMA__COMBO[] = {KC_H, KC_COMMA, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(L_U__COMBO, KC_J),
-    COMBO(H_COMMA__COMBO, KC_K), // keycodes with modifiers are possible too!
+    COMBO(L_U__COMBO, KC_CAPS),
+    COMBO(H_COMMA__COMBO, KC_ENT), // keycodes with modifiers are possible too!
 };
 
 // -----------------------------------------------------------
@@ -39,14 +42,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_sethsv_noeeprom(150, 255, RBG_VAL);
     break;
   case _FUNCTION:
-    // blu
-    rgblight_sethsv_noeeprom(150, 255, RBG_VAL);
+    // ?
+    rgblight_sethsv_noeeprom(175, 255, RBG_VAL);
     break;
   case _MOUSE:
-    rgblight_sethsv_noeeprom(80, 255, RBG_VAL);
+    rgblight_sethsv_noeeprom(100, 255, RBG_VAL);
     break;
   case _SYMBOL:
-    rgblight_sethsv_noeeprom(10, 225, RBG_VAL);
+    rgblight_sethsv_noeeprom(65, 225, RBG_VAL);
     break;
   case _NUMBER:
     rgblight_sethsv_noeeprom(30, 255, RBG_VAL);
@@ -54,7 +57,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   default:
     // Default colors
     rgblight_sethsv(222, 255, RBG_VAL_LOW);
-	onBaseLayerColor = true;
+	  onBaseLayerColor = true;
     break;
   }
   return state;
@@ -69,7 +72,7 @@ void led_set_user(uint8_t usb_led) {
     }
     else {
         // Default colors
-        rgblight_sethsv(190, 255, RBG_VAL_LOW);
+        rgblight_sethsv(222, 255, RBG_VAL_LOW);
     }
   }
 }
