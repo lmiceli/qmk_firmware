@@ -1,0 +1,6 @@
+OLED_DRIVER_ENABLE  = no
+
+RGBLIGHT_ENABLE    = no
+RGB_MATRIX_ENABLE  = yes
+COMBO_ENABLE  = yes
+NKRO_ENABLE        = no
