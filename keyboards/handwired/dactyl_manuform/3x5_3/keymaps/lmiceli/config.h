@@ -16,7 +16,12 @@
 /* serial.c configuration for split keyboard */
 //#define SOFT_SERIAL_PIN D2
 
-//#define EE_HANDS
+// #define USE_SERIAL_PD2
+
+/* Select hand configuration */
+//#define MASTER_LEFT
+//#define MASTER_RIGHT
+#define EE_HANDS
 
 
 // Set the mouse settings to a comfortable speed/accuracy trade-off,

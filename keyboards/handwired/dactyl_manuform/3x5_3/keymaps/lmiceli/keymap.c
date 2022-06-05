@@ -1,6 +1,10 @@
 #include QMK_KEYBOARD_H
 
-/*  */
+/*
+   qmk flash -kb handwired/dactyl_manuform/3x5_3 -km lmiceli -bl :avrdude-split-left
+   qmk flash -kb handwired/dactyl_manuform/3x5_3 -km lmiceli -bl :avrdude-split-right
+*/
+
 /*  */
 
 enum layers {
@@ -19,7 +23,7 @@ bool is_alt_tab_active = false;
 
 enum custom_keycodes {          // Make sure have the awesome keycode ready
   ALT_TAB         = SAFE_RANGE,
-  LT_NAV_ESC      = LT(2,KC_TAB),
+  LT_NAV_ESC      = LT(_NAVIGATION, KC_TAB),
   LT_ARROW_BSPC   = LT(_ARROW, KC_BSPC),
   LT_MOUSE_TAB    = LT(_MOUSE, KC_TAB),
   LT_FUNCTION_DEL = LT(_FUNCTION, KC_DEL),
@@ -70,11 +74,11 @@ KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,        /**/ KC_K, 
 /* DESKTOP NAVIGATION LAYER */
 	[_NAVIGATION] = LAYOUT_split_3x5_3(
 
-KC_NO, KC_BTN2,             KC_BTN3,      KC_BTN1,             LCTL(KC_PLUS),   /**/ KC_NO,        SGUI(KC_L),    SGUI(KC_U),   KC_MPRV, KC_MNXT,
+KC_NO, KC_BTN2,             KC_BTN3,      KC_BTN1,             LCTL(KC_PLUS),   /**/ LCAG(KC_3),   LCAG(KC_4),    LCAG(KC_5),    KC_MPRV, KC_MNXT,
 
-KC_NO, LGUI(LCTL(KC_LEFT)), LGUI(KC_TAB), LGUI(LCTL(KC_RGHT)), KC_NO,         /**/ KC_NO,        SGUI(KC_N),    SGUI(KC_E),   KC_VOLD, KC_VOLU,
+KC_NO, LGUI(LCTL(KC_LEFT)), LGUI(KC_TAB), LGUI(LCTL(KC_RGHT)), KC_NO,         /**/   KC_NO,        LGUI(KC_LEFT), LGUI(KC_RGHT), KC_VOLD, KC_VOLU,
 
-KC_NO, KC_NO,               KC_NO,        KC_NO,               LCTL(KC_MINS),   /**/ SGUI(KC_DEL), SGUI(KC_COMM), SGUI(KC_DOT), KC_MPLY, KC_MUTE,
+KC_NO, KC_NO,               KC_NO,        KC_NO,               LCTL(KC_MINS),   /**/ SGUI(KC_DEL), SGUI(KC_COMM), SGUI( KC_DOT), KC_MPLY, KC_MUTE,
 
                                  	      KC_NO,KC_NO,ALT_TAB,       /**/ KC_NO,ALT_TAB,      LALT(KC_F4)//SGUI(KC_SPC), SGUI(KC_ENT)
 
@@ -119,7 +123,7 @@ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO, /**/ KC_NO, KC_WH_L, KC_NO,   KC_WH_R, 
 	KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC,       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 	KC_SCLN, KC_4, KC_5, KC_6, KC_EQL,        KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
 	KC_GRV,  KC_1, KC_2, KC_3, KC_BSLS,       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
-	 KC_0, KC_0, KC_MINS, KC_NO, KC_NO, KC_NO
+	 KC_0, KC_MINS, KC_MINS, KC_NO, KC_NO, KC_NO
 
 ),
 
