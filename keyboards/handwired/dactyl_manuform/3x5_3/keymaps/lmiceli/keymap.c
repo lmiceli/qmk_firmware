@@ -1,34 +1,145 @@
-/*
-Copyright 2019 @foostan
-Copyright 2020 Drashna Jaelre <@drashna>
-Copyright 2021 @dlford
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #include QMK_KEYBOARD_H
-//#include "features/caps_word.h"
 
-// Layers
+/*  */
+/*  */
+
 enum layers {
-    _COLEMAK=0,
+    _COLEMAK = 0,
+    _NAVIGATION,
+    _ARROW,
+    _MOUSE,
+    _SYMBOL,
+    _NUMBER,
+    _FUNCTION,
 };
 
+/*  */
+/* ALT TAB */
+bool is_alt_tab_active = false;
+
+enum custom_keycodes {          // Make sure have the awesome keycode ready
+  ALT_TAB         = SAFE_RANGE,
+  LT_NAV_ESC      = LT(2,KC_TAB),
+  LT_ARROW_BSPC   = LT(_ARROW, KC_BSPC),
+  LT_MOUSE_TAB    = LT(_MOUSE, KC_TAB),
+  LT_FUNCTION_DEL = LT(_FUNCTION, KC_DEL),
+  LT_NUMBER_SPC   = LT(_NUMBER, KC_SPC),
+  LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
+};
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    if (is_alt_tab_active) {
+        unregister_code(KC_LALT);
+        is_alt_tab_active = false;
+    }
+    return state;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode){
+        case ALT_TAB: // super alt tab macro
+            if (record->event.pressed) {
+                if (!is_alt_tab_active) {
+                    is_alt_tab_active = true;
+                    register_code(KC_LALT);
+                }
+                register_code(KC_TAB);
+            } else {
+                unregister_code(KC_TAB);
+            }
+            break;
+        return false;
+     }
+  return true;
+}
+
+/* ALT TAB END */
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+	[0] = LAYOUT_split_3x5_3(
+
+LGUI_T(KC_Q), KC_W,         KC_F,         KC_P,         KC_B,        /**/ KC_J,         KC_L,         KC_U,         KC_Y,         LGUI_T(KC_QUOT),
+/*LT(3,KC_A)*/                                                                                                             /*LT(6,KC_O)*/
+KC_A,         LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), LGUI_T(KC_G),/**/ LGUI_T(KC_M), LSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), KC_O,
+
+KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,        /**/ KC_K,         KC_H,         KC_COMM,      KC_DOT,       KC_SLSH,
+
+			            LT_NAV_ESC,   LT_ARROW_BSPC, LT_MOUSE_TAB,   /**/ LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
+	),
+
+/* DESKTOP NAVIGATION LAYER */
+	[_NAVIGATION] = LAYOUT_split_3x5_3(
+
+KC_NO, KC_BTN2,             KC_BTN3,      KC_BTN1,             LCTL(KC_PLUS),   /**/ KC_NO,        SGUI(KC_L),    SGUI(KC_U),   KC_MPRV, KC_MNXT,
+
+KC_NO, LGUI(LCTL(KC_LEFT)), LGUI(KC_TAB), LGUI(LCTL(KC_RGHT)), KC_NO,         /**/ KC_NO,        SGUI(KC_N),    SGUI(KC_E),   KC_VOLD, KC_VOLU,
+
+KC_NO, KC_NO,               KC_NO,        KC_NO,               LCTL(KC_MINS),   /**/ SGUI(KC_DEL), SGUI(KC_COMM), SGUI(KC_DOT), KC_MPLY, KC_MUTE,
+
+                                 	      KC_NO,KC_NO,ALT_TAB,       /**/ KC_NO,ALT_TAB,      LALT(KC_F4)//SGUI(KC_SPC), SGUI(KC_ENT)
+
+),
+
+	[_ARROW] = LAYOUT_split_3x5_3(
+
+KC_LGUI,       KC_BTN2,    KC_BTN3,    KC_BTN1,    LCTL(KC_PGUP), /**/ KC_PGUP,      KC_HOME, KC_UP,   KC_END,  KC_PGDN,
+
+LALT(KC_LEFT), KC_LALT,    KC_LCTL,    KC_LSFT,    KC_CAPS,      /**/ LCA(KC_LEFT), KC_LEFT, KC_DOWN, KC_RGHT, LCA(KC_RGHT),
+
+LCTL(KC_Z),    LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), LCTL(KC_PGDN), /**/ KC_F11,       KC_F7,   KC_F8,   KC_F9,   LALT(KC_RGHT),
+
+                                       ALT_TAB,     KC_NO,KC_NO,  /**/ KC_NO,        KC_TAB,       KC_DEL
+
+),
+
+	[_MOUSE] = LAYOUT_split_3x5_3(
+
+KC_NO, KC_WH_U, ALT_TAB, KC_WH_D, KC_NO, /**/ KC_NO, KC_WH_U, KC_MS_U, KC_WH_D, KC_NO,
+
+KC_NO, KC_LALT, KC_LCTL, KC_LSFT, KC_NO, /**/ KC_NO, KC_MS_L, KC_MS_D, KC_MS_R, KC_NO,
+
+KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO, /**/ KC_NO, KC_WH_L, KC_NO,   KC_WH_R, KC_NO,
+
+              KC_BTN2, KC_BTN3, KC_BTN1,      KC_BTN3,KC_BTN1, KC_BTN2
+
+),
+
+    [_SYMBOL] =
+    LAYOUT_split_3x5_3(
+    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,            KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,            KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
+    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE,            KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     KC_NO, KC_RPRN, KC_UNDS, KC_NO,KC_NO, KC_NO
+
+),
+
+     /* number LAYER */
+	[_NUMBER] =
+	LAYOUT_split_3x5_3(
+	KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC,       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+	KC_SCLN, KC_4, KC_5, KC_6, KC_EQL,        KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
+	KC_GRV,  KC_1, KC_2, KC_3, KC_BSLS,       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+	 KC_0, KC_0, KC_MINS, KC_NO, KC_NO, KC_NO
+
+),
+
+	 /* func LAYER */
+	[_FUNCTION] =
+	LAYOUT_split_3x5_3(
+	KC_F12, KC_F7, KC_F8, KC_F9, KC_NO,       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+	KC_F11, KC_F4, KC_F5, KC_F6, KC_NO,       KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
+	KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,      KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+	              KC_ESC, KC_BSPC, KC_TAB,    KC_DEL, KC_SPC, KC_ENT)
+};
+
+
+
 // Quantum keys / Abbreviations
+// BAK/IDEAS
+/*
 enum custom_keycodes {
     VVV = KC_TRNS,
-    //XXX = KC_NO,
+    XXX = KC_NO,
     CSA_Q = MEH_T(KC_Q),
     CSA_F1 = MEH_T(KC_F1),
     CSA_1 = MEH_T(KC_1),
@@ -86,19 +197,4 @@ enum custom_keycodes {
     DF_QWERTY = DF(0),
     DF_COLEMAK = DF(1),
 };
-
-
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_COLEMAK] = LAYOUT_split_3x5_3(
-            //|--------------------------------------------|                    |--------------------------------------------|
-                KC_QUOT, KC_Y,    KC_U,    KC_L,    KC_J,                         KC_J,    KC_L,    CS_U,    CA_Y,    CSA_SCLN,
-            //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-                KC_O,    KC_I,    KC_E,    KC_N,    KC_M,                         KC_H,    RSFT_N,  RCTL_E,  RALT_I,  RGUI_O,
-            //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-                KC_SLSH, KC_DOT,  KC_COMM, KC_H,    KC_K,                         KC_K,    KC_M,    XXX,  XXX,  KC_SLSH,
-            //|--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------|
-                                           KC_ENT,  KC_SPC,  KC_DEL,    KC_DEL, LT2_TAB,  KC_ENT
-            //                           |--------+--------+--------|  |--------+--------+--------|
-        ),
-};
-
+*/
