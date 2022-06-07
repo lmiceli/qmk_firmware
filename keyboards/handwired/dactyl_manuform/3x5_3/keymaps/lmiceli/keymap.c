@@ -23,7 +23,7 @@ bool is_alt_tab_active = false;
 
 enum custom_keycodes {          // Make sure have the awesome keycode ready
   ALT_TAB         = SAFE_RANGE,
-  LT_NAV_ESC      = LT(_NAVIGATION, KC_TAB),
+  LT_NAV_ESC      = LT(_NAVIGATION, KC_ESC),
   LT_ARROW_BSPC   = LT(_ARROW, KC_BSPC),
   LT_MOUSE_TAB    = LT(_MOUSE, KC_TAB),
   LT_FUNCTION_DEL = LT(_FUNCTION, KC_DEL),
@@ -113,7 +113,7 @@ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO, /**/ KC_NO, KC_WH_L, KC_NO,   KC_WH_R, 
     KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,            KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
     KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,            KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE,            KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
-     KC_NO, KC_RPRN, KC_UNDS, KC_NO,KC_NO, KC_NO
+     KC_RPRN, KC_UNDS, KC_NO,         KC_NO,KC_NO, KC_NO
 
 ),
 
@@ -123,7 +123,7 @@ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO, /**/ KC_NO, KC_WH_L, KC_NO,   KC_WH_R, 
 	KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC,       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 	KC_SCLN, KC_4, KC_5, KC_6, KC_EQL,        KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
 	KC_GRV,  KC_1, KC_2, KC_3, KC_BSLS,       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
-	 KC_0, KC_MINS, KC_MINS, KC_NO, KC_NO, KC_NO
+	 KC_0, KC_MINS, KC_NO,                   KC_NO, KC_NO, KC_NO
 
 ),
 
