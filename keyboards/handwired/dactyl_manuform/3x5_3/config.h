@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #undef MANUFACTURER
 #endif
 #define MANUFACTURER    DLFord
-#define PRODUCT         Dactyl Minidox (3x5+3)
+#define PRODUCT         Skeletyl (3x5+3)
 
 // Communication
 // #define USE_I2C
