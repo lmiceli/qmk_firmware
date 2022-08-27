@@ -24,4 +24,6 @@ LTO_ENABLE = yes
 SRC += matrix.c
 QUANTUM_LIB_SRC += i2c_master.c
 
+DEBOUNCE_TYPE = asym_eager_defer_pk
+
 LAYOUTS = split_3x5_2
