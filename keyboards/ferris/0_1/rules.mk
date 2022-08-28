@@ -1,3 +1,5 @@
+# this is the one I use
+
 # MCU name
 MCU = atmega32u4
 
@@ -23,5 +25,7 @@ LTO_ENABLE = yes
 
 SRC += matrix.c
 QUANTUM_LIB_SRC += i2c_master.c
+
+TAP_DANCE_ENABLE=yes
 
 LAYOUTS = split_3x5_2

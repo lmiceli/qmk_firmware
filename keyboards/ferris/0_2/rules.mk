@@ -24,4 +24,6 @@ LTO_ENABLE = no
 SRC += matrix.c
 QUANTUM_LIB_SRC += i2c_master.c
 
+TAP_DANCE_ENABLE=yes
+
 LAYOUTS = split_3x5_2
