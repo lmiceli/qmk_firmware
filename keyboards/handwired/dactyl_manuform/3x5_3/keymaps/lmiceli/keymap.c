@@ -36,6 +36,7 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
   LT_FUNCTION_DEL = LT(_FUNCTION, KC_DEL),
   LT_NUMBER_SPC   = LT(_NUMBER, KC_SPC),
   LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
+  LT_MOUSE_H      = LT(_MOUSE, KC_H),
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -73,23 +74,23 @@ LGUI_T(KC_Q), KC_W,         KC_F,         KC_P,         KC_B,         /**/ KC_J,
 /*LT(3,KC_A)*/                                                                                                             /*LT(6,KC_O)*/
 KC_A,         LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), TD(TD_G_CAPS),/**/ KC_M,         LSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), KC_O,
 
-KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,         /**/ KC_K,         KC_H,         KC_COMM,      KC_DOT,       KC_SLSH,
+KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,         /**/ KC_K,         LT_MOUSE_H,   KC_COMM,      KC_DOT,       KC_SLSH,
 
-			            LT_NAV_ESC,   LT_ARROW_BSPC, TG(_MOUSE),      /**/ LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
-//			            LT_NAV_ESC,   LT_ARROW_BSPC, TD(TD_TAB_MOUSE),    /**/ LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
-                        //LT_NAV_ESC,   LT_ARROW_BSPC, LT_MOUSE_TAB,    /**/ LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
+			            // LT_NAV_ESC,   LT_ARROW_BSPC, TG(_MOUSE),      /**/ LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
+			            //LT_NAV_ESC,   LT_ARROW_BSPC, TD(TD_TAB_MOUSE),    /**/ LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
+                        LT_NAV_ESC,   LT_ARROW_BSPC, LT_MOUSE_TAB,    /**/  LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
 	),
 
 /* DESKTOP NAVIGATION LAYER */
 	[_NAVIGATION] = LAYOUT_split_3x5_3(
 
-KC_NO, KC_BTN2,             KC_BTN3,      KC_BTN1,             LCTL(KC_PLUS),   /**/ LCAG(KC_3),   LCAG(KC_4),    LCAG(KC_5),    KC_MPRV, KC_MNXT,
+KC_NO, KC_BTN3,             KC_BTN2,      KC_BTN1,             LCTL(KC_PLUS),   /**/ LCAG(KC_3),   LCAG(KC_4),    LCAG(KC_5),    KC_MPRV, KC_MNXT,
 
 KC_NO, LGUI(LCTL(KC_LEFT)), LGUI(KC_TAB), LGUI(LCTL(KC_RGHT)), LCTL(KC_PGUP),   /**/ LCTL(KC_PGDN),LGUI(KC_LEFT), LGUI(KC_RGHT), KC_VOLD, KC_VOLU,
 
 KC_NO, KC_NO,               KC_NO,        KC_NO,               LCTL(KC_MINS),   /**/ SGUI(KC_DEL), SGUI(KC_COMM), SGUI( KC_DOT), KC_MPLY, KC_MUTE,
 
-                                 	      KC_NO,KC_NO,ALT_TAB,       /**/ KC_NO,ALT_TAB,      LALT(KC_F4)//SGUI(KC_SPC), SGUI(KC_ENT)
+                                 	      KC_NO,KC_NO,ALT_TAB,                  /**/ KC_NO, ALT_TAB,   LALT(KC_F4)//SGUI(KC_SPC), SGUI(KC_ENT)
 
 ),
 
@@ -101,7 +102,7 @@ LALT(KC_LEFT), KC_LALT,    KC_LCTL,    KC_LSFT,    LALT(KC_RGHT), /**/ LCA(KC_LE
 
 LCTL(KC_Z),    LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO,         /**/ KC_F11,       KC_F7,   KC_F8,   KC_F9,   KC_NO,
 
-                                       ALT_TAB,  KC_NO,   KC_NO,  /**/ ALT_TAB,      KC_TAB,  KC_DEL
+                                       ALT_TAB,  KC_NO,   KC_NO,  /**/ KC_DEL, ALT_TAB, KC_DEL
 
 ),
 
