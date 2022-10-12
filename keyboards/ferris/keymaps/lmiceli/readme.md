@@ -92,6 +92,8 @@ It gives access to some essential keys that would typically be accessed on a thu
 
 As the layer hosting esc, we duplicated some symbols here to allow for fast navigation in vim. For instance, esc, :, w, q can be done in a single roll.
 
+// Prueba ESTO  es  UNA  prueba
+
 Where is the keymap.c?
 ----------------------
 
