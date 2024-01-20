@@ -1,17 +1,8 @@
 #include QMK_KEYBOARD_H
 
 /* $ 
-
 qmk flash -kb ferris/sweep -km lmiceli
-
- */
-/*  */
-/*  */
-enum ferris_tap_dances {
-//   TD_Q_GUI
-TD_G_CAPS,
-TD_M_MOUSE
-};
+*/
 
 enum layers {
   _COLEMAK = 0,
@@ -145,10 +136,3 @@ KC_GRV,  KC_1, KC_2, KC_3, KC_BSLS,   /**/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_
 )};
 
 
-// Tap Dance Definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for Q, twice for ESC
-    //[TD_Q_GUI] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_LGUI)
-    [TD_G_CAPS] =  ACTION_TAP_DANCE_DOUBLE(KC_G, KC_CAPS),
-    [TD_M_MOUSE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_M, 3)    
-};
