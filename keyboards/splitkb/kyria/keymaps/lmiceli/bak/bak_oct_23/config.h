@@ -16,9 +16,9 @@
 
 #pragma once
 
-#ifdef OLED_ENABLE
-  #define OLED_DISPLAY_128X64
-#endif
+//#ifdef OLED_DRIVER_ENABLE
+//  #define OLED_DISPLAY_128X64
+//#endif
 
 #ifdef RGBLIGHT_ENABLE
   #define RGBLIGHT_ANIMATIONS
@@ -26,6 +26,47 @@
   #define RGBLIGHT_SAT_STEP 8
   #define RGBLIGHT_VAL_STEP 8
 #endif
+
+// build
+// ❯ cd qmk_firmware/keyboards/kyria/keymaps/lmiceli
+// ❯ qmk json2c -o keymap.c k14.json
+// ❯ qmk flash -kb kyria -km lmiceli
+// no funciona el ultimo xq?
+
+// esto x alguna razon funciono
+// ❯ qmk flash k14.json -bl avrdude
+// pero algo no va del todo bien
+
+
+
+
+
+
+/* Select hand configuration */
+//#define MASTER_LEFT
+#define MASTER_RIGHT
+//#define EE_HANDS
+
+// Prevent normal rollover on alphas from accidentally triggering mods.
+#define IGNORE_MOD_TAP_INTERRUPT
+
+// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+#define TAPPING_FORCE_HOLD
+
+// Recommended for heavy chording.
+#define QMK_KEYS_PER_SCAN 4
+
+// This makes tap and hold keys (like Mod Tap) work better for fast typists, or for high TAPPING_TERM settings  
+#define PERMISSIVE_HOLD
+
+#define TAPPING_TERM 200
+
+/* Set 0 if debouncing isn't needed */
+//#undef  DEBOUNCE
+//#define DEBOUNCE 8
+
+//#define PREVENT_STUCK_MODIFIERS 
+
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 // #define SPLIT_USB_DETECT
