@@ -1,5 +1,11 @@
 # Included Keyboards
 
+qmk compile -kb handwired/dactyl_manuform/3x5_3 -km lmiceli
+
+
+
+
+
 QMK runs on a diverse range of keyboards. Some of these keyboards are well maintained and see constant community contributions, while others are part of the repository for historical reasons.
 
 ## Official QMK Keyboards
