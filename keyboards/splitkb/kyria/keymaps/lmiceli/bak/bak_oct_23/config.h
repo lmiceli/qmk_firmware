@@ -47,16 +47,13 @@
 #define MASTER_RIGHT
 //#define EE_HANDS
 
-// Prevent normal rollover on alphas from accidentally triggering mods.
-#define IGNORE_MOD_TAP_INTERRUPT
-
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define TAPPING_FORCE_HOLD
 
 // Recommended for heavy chording.
 #define QMK_KEYS_PER_SCAN 4
 
-// This makes tap and hold keys (like Mod Tap) work better for fast typists, or for high TAPPING_TERM settings  
+// This makes tap and hold keys (like Mod Tap) work better for fast typists, or for high TAPPING_TERM settings
 #define PERMISSIVE_HOLD
 
 #define TAPPING_TERM 200
@@ -65,7 +62,7 @@
 //#undef  DEBOUNCE
 //#define DEBOUNCE 8
 
-//#define PREVENT_STUCK_MODIFIERS 
+//#define PREVENT_STUCK_MODIFIERS
 
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
