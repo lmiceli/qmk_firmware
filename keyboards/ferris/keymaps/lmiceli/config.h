@@ -32,8 +32,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* serial.c configuration for split keyboard */
 //#define SOFT_SERIAL_PIN D2
 
-//#define EE_HANDS
 
+//Setting EE_hands to use either hands as master
+
+//If you define EE_HANDS in your config.h, you will need to set the EEPROM for the left and right halves.
+
+//The EEPROM is used to store whether the half is left handed or right handed. This makes it so that the same firmware file will run on both hands instead of having to flash left and right handed versions of the firmware to each half. To flash the EEPROM file for the left half run:
+
+//avrdude -p atmega32u4 -P $(COM_PORT) -c avr109 -U eeprom:w:eeprom-lefthand.eep
+// or the equivalent in dfu-programmer
+
+#define EE_HANDS
 
 // Set the mouse settings to a comfortable speed/accuracy trade-off,
 // assuming a screen refresh rate of 60 Htz or higher
@@ -52,7 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100
 
 // Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 190
+#define TAPPING_TERM 175
 #define PERMISSIVE_HOLD
 #define TAPPING_FORCE_HOLD
 

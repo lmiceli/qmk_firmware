@@ -1,9 +1,21 @@
 #include QMK_KEYBOARD_H
 
-/* $ 
+/* $
 qmk flash -kb ferris/sweep -km lmiceli
+
+ee hands setting (only once)
+qmk flash -kb ferris/sweep -km lmiceli -bl :avrdude-split-left
+qmk flash -kb ferris/sweep -km lmiceli -bl :avrdude-split-right
 */
 
+// TODO:
+//  Use the QK_CAPS_WORD_TOGGLE keycode (short alias CW_TOGG) in your keymap.
+//  read abt: Caps word, how to type a minus/dash
+//  ---
+//  for some reason cant flash the right side or connect to the computer from that side
+//  promicro broken?
+//  also de thumb combos suck
+//  try to add new ones or thumb combinations
 enum layers {
   _COLEMAK = 0,
   _NAVIGATION,
@@ -26,7 +38,6 @@ LT_NUMBER_SPC   = LT(_NUMBER, KC_SPC),
 LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
 LT_MOUSE_H      = LT(_MOUSE, KC_H),
 };
-
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     if (is_alt_tab_active) {
@@ -56,6 +67,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 /* ALT TAB END */
 
+// COMBO triggers
+
+const uint16_t PROGMEM combo_tab[]      = {LT_NAV_ESC,     LT_ARROW_BSPC, COMBO_END};
+const uint16_t PROGMEM combo_del[]      = {LT_NUMBER_SPC,  LT_SYMBOL_ENT, COMBO_END};
+const uint16_t PROGMEM combo_capslock[] = {KC_M,           KC_K,          COMBO_END};
+
+// COMBO result
+combo_t key_combos[] = {
+    COMBO(combo_tab,      LT_MOUSE_TAB),
+    COMBO(combo_del,      LT_FUNCTION_DEL),
+    COMBO(combo_capslock, KC_CAPS),
+};
+
+// KEYMAP
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[0] = LAYOUT(
 
@@ -93,7 +118,7 @@ LALT(KC_LEFT), KC_LALT,    KC_LCTL,    KC_LSFT,    LALT(KC_RGHT), /**/ LCTL(KC_P
 
 LCTL(KC_Z),    LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO,         /**/ KC_CAPS,  KC_F11, KC_F7,   KC_F8,   KC_F9,
 
-                                              KC_TAB,     KC_NO,  /**/ ALT_TAB,       LALT(KC_F4)
+                                         LALT(KC_F4),     KC_NO,  /**/ KC_TAB,       ALT_TAB
 
 ),
 
@@ -111,17 +136,17 @@ QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO, /**/ KC_NO, KC_WH_L, KC_BTN1,   KC_WH
 
 /* SYMBOL */
 [4] = LAYOUT(
-    
-KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, /**/   KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO, 
-KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS, /**/   KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO, 
-KC_TILD, KC_EXLM, KC_AT,  KC_HASH,  KC_PIPE, /**/   KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO, 
+
+KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, /**/   KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS, /**/   KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
+KC_TILD, KC_EXLM, KC_AT,  KC_HASH,  KC_PIPE, /**/   KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
                         /* ) */  /* _  */
                         KC_RPRN, KC_UNDS,    /**/   KC_NO, KC_NO),
 
 /* NUMBER */ [5] = LAYOUT(
-    
+
 KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC,   /**/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
-KC_SCLN, KC_4, KC_5, KC_6, KC_EQL,    /**/ KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO, 
+KC_SCLN, KC_4, KC_5, KC_6, KC_EQL,    /**/ KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
 KC_GRV,  KC_1, KC_2, KC_3, KC_BSLS,   /**/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
 
                     KC_0, KC_MINS,    /**/ KC_NO, KC_NO
@@ -129,10 +154,10 @@ KC_GRV,  KC_1, KC_2, KC_3, KC_BSLS,   /**/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_
 ),/* FUNCTION */[6] = LAYOUT(
 
         KC_F12, KC_F7, KC_F8, KC_F9, KC_NO,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        KC_F11, KC_F4, KC_F5, KC_F6, KC_NO,     KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO, 
-        KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_F11, KC_F4, KC_F5, KC_F6, KC_NO,     KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
+        KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,    KC_NO, KC_NO, KC_NO, KC_NO, QK_BOOT,
                          KC_ESC, KC_BSPC,           KC_SPC, KC_ENT
-                         
+
 )};
 
 
