@@ -16,23 +16,27 @@
  */
 #pragma once
 
-#ifndef TAPPING_TERM
-/**
- * \brief Configure the global tapping term (default: 200ms).
- *
- * If you have a lot of accidental mod activations, crank up the tapping term.
- *
- * See docs.qmk.fm/using-qmk/software-features/tap_hold#tapping-term
- */
-#    define TAPPING_TERM 200
-#endif  // TAPPING_TERM
+#define DEBOUNCE 5
 
 // mod tap
 #define PERMISSIVE_HOLD
 #define TAPPING_FORCE_HOLD
 
 // additional for home row mods
-#define TAPPING_TERM 200
+#define TAPPING_TERM 160
+
+#define QUICK_TAP_TERM 0
+
+#ifdef POINTING_DEVICE_ENABLE
+// Automatically enable the pointer layer when moving the trackball.  See also:
+// - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
+// - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD`
+// #define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+
+// Flip horizontal direction for drag-scroll.
+#    define CHARYBDIS_DRAGSCROLL_REVERSE_X
+// #define CHARYBDIS_DRAGSCROLL_REVERSE_Y
+#endif // POINTING_DEVICE_ENABLE
 
 // Set the mouse settings to a comfortable speed/accuracy trade-off,
 // assuming a screen refresh rate of 60 Htz or higher
@@ -54,25 +58,25 @@
 
 /* RGB Matrix. */
 
-#ifdef RGB_MATRIX_ENABLE
+//#ifdef RGB_MATRIX_ENABLE
 // Disable control of RGB matrix by keycodes (must use firmware implementation
 // to control the feature).
 /* #    define RGB_MATRIX_DISABLE_KEYCODES */
 
 // Limit maximum brightness to keep power consumption reasonable, and avoid
 // disconnects.
-#    undef RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 64
+//#    undef RGB_MATRIX_MAXIMUM_BRIGHTNESS
+//#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 64
 
 // Rainbow swirl as startup mode.
 /* #    define ENABLE_RGB_MATRIX_TYPING_HEATMAP */
 
 // Slow swirl at startup.
-#    define RGB_MATRIX_STARTUP_SPD 32
+//#    define RGB_MATRIX_STARTUP_SPD 32
 
 // Startup values.
-#    define RGB_MATRIX_STARTUP_HUE 0
-#    define RGB_MATRIX_STARTUP_SAT 255
-#    define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#    define RGB_MATRIX_STARTUP_HSV RGB_MATRIX_STARTUP_HUE, RGB_MATRIX_STARTUP_SAT, RGB_MATRIX_STARTUP_VAL
-#endif  // RGB_MATRIX_ENABLE
+//#    define RGB_MATRIX_STARTUP_HUE 0
+//#    define RGB_MATRIX_STARTUP_SAT 255
+//#    define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
+//#    define RGB_MATRIX_STARTUP_HSV RGB_MATRIX_STARTUP_HUE, RGB_MATRIX_STARTUP_SAT, RGB_MATRIX_STARTUP_VAL
+//#endif  // RGB_MATRIX_ENABLE
