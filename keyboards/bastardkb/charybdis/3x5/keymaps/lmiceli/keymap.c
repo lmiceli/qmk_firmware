@@ -3,7 +3,7 @@
 /*
  *
  * make bastardkb/charybdis/3x5/v1/elitec:lmiceli:flash
- * por lo q sea en v2 no me funciona la bola   
+ * por lo q sea en v2 no me funciona la bola
  *
  * */
 
@@ -22,6 +22,7 @@ enum layers {
     _SYMBOL,
     _NUMBER,
     _FUNCTION,
+    _LAYER_MOUSE,
 };
 
 /*  */
@@ -38,6 +39,7 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
     LT_NUMBER_SPC   = LT(_NUMBER, KC_SPC),
     LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
     LT_MOUSE_H      = LT(_MOUSE, KC_H),
+    LT_MOUSE2_A     = LT(_LAYER_MOUSE, KC_A),
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -83,11 +85,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
         LGUI_T(KC_Q), KC_W,         KC_F,         KC_P,         KC_B,         /**/ KC_J,  KC_L,         KC_U,         KC_Y,         LGUI_T(KC_QUOT),
         // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-        KC_A,         LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), KC_G,         /**/ KC_M,  LSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), LT_FUNCTION_O,
+        LT_MOUSE2_A,  LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), KC_G,         /**/ KC_M,  LSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), LT_FUNCTION_O,
         // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
         KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,         /**/ KC_K,  LT_MOUSE_H,   KC_COMM,      KC_DOT,       KC_SLSH,
         // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-        LT_NAV_ESC,   LT_ARROW_BSPC, LT_MOUSE_TAB,    /**/  /*LT_FUNCTION_DEL, */LT_NUMBER_SPC, LT_SYMBOL_ENT
+        LT_NAV_ESC,   LT_ARROW_BSPC, LT_MOUSE_TAB,            LT_SYMBOL_ENT, LT_NUMBER_SPC
         //                   ╰───────────────────────────╯ ╰──────────────────╯
         ),
 
@@ -101,33 +103,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
         KC_NO, KC_NO,               KC_NO,        KC_NO,               LCTL(KC_MINS),   /**/ SGUI(KC_DEL), SGUI(KC_COMM), SGUI( KC_DOT), KC_MPLY, KC_MUTE,
         // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-        KC_NO,KC_NO,KC_NO,/*ALT_TAB,*/                  /**/    KC_SPC, KC_DEL/*,  LALT(KC_F4)*/
+        KC_NO,KC_NO,KC_NO,/*ALT_TAB,*/                  /**/    KC_DEL, KC_SPC/*,  LALT(KC_F4)*/
         //                   ╰───────────────────────────╯ ╰──────────────────╯
         ),
 
     [_ARROW] = LAYOUT_charybdis_3x5(
-        // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-
-        KC_LGUI,       KC_BTN3,    KC_BTN2,    KC_BTN1,    KC_NO,         /**/ KC_PGUP,  KC_HOME, KC_UP,   KC_END,  KC_PGDN,
-        // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-        LALT(KC_LEFT), KC_LALT,    KC_LCTL,    KC_LSFT,    LALT(KC_RGHT), /**/ LCTL(KC_PGUP), KC_LEFT, KC_DOWN, KC_RGHT, LCTL(KC_PGDN),
-        // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-        LCTL(KC_Z),    LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO,         /**/ KC_CAPS,  KC_F11, KC_F7,   KC_F8,   KC_F9,
-        // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                            /*ALT_TAB,*/  KC_NO,   KC_NO,   KC_NO,  /**/ KC_PGUP, /*ALT_TAB,*/ KC_PGDN
-        //                   ╰───────────────────────────╯ ╰──────────────────╯
+        // ╭─────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+        KC_LGUI,     KC_BTN3,    KC_BTN2,  KC_BTN1,    KC_NO,       KC_PGUP,       KC_HOME, KC_UP,   KC_END,  KC_PGDN,
+        // ├─────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+        LALT(KC_LEFT), KC_LALT,  KC_LCTL,  KC_LSFT,  LALT(KC_RGHT), LCTL(KC_PGUP), KC_LEFT, KC_DOWN, KC_RGHT, LCTL(KC_PGDN),
+        // ├─────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+        LCTL(KC_Z),  LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO,     KC_CAPS,       KC_F11,  KC_F7,   KC_F8,   KC_F9,
+        // ╰─────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+        /*ALT_TAB,*/                   KC_NO,   KC_NO,   KC_NO,     KC_DEL,    KC_SPC
+        //                   ╰───────────────────────────────────╯ ╰──────────────────╯
         ),
 
     [_MOUSE] = LAYOUT_charybdis_3x5(
         // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-
-        KC_NO,   KC_WH_U, /*ALT_TAB*/KC_NO, KC_WH_D, KC_NO, /**/ KC_NO, KC_WH_U, KC_MS_U, KC_WH_D, KC_NO,
+            KC_NO,   KC_WH_U, KC_NO,  KC_WH_D,  KC_NO,      KC_NO, KC_WH_U, KC_MS_U, KC_WH_D,  KC_NO,
         // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-        KC_NO,   KC_LALT, KC_LCTL, KC_LSFT, KC_NO, /**/ KC_NO, KC_MS_L, KC_MS_D, KC_MS_R, KC_NO,
+            KC_NO,   KC_LALT, KC_LCTL, KC_LSFT, KC_NO,      KC_NO, KC_MS_L, KC_MS_D, KC_MS_R,  KC_NO,
         // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-        QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO, /**/ KC_NO, KC_BTN1, KC_BTN3, KC_BTN2,  KC_NO,
+            QK_BOOT, KC_NO,   KC_NO,  KC_NO,    KC_NO,      KC_NO, KC_BTN1, KC_BTN3, KC_BTN2,  KC_NO,
         // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-        KC_TRNS, KC_BTN1,   KC_TRNS,    KC_WH_L, KC_WH_R/*, KC_BTN1*/
+                              KC_TRNS, KC_BTN1,   KC_TRNS,  KC_WH_L, KC_WH_R
         //                   ╰───────────────────────────╯ ╰──────────────────╯
         ),
 
@@ -159,27 +159,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* func LAYER */
     [_FUNCTION] =LAYOUT_charybdis_3x5(
         // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-            KC_F12, KC_F7, KC_F8, KC_F9, KC_NO,       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+            KC_F12, KC_F7, KC_F8, KC_F9, KC_NO,             KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
         // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-            KC_F11, KC_F4, KC_F5, KC_F6, KC_NO,       KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
+            KC_F11, KC_F4, KC_F5, KC_F6, KC_NO,             KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
         // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-            KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,      KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+            KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,            KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
         // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-            KC_ESC, KC_BSPC, KC_TAB,     KC_SPC, KC_DEL/*, KC_ENT*/)
-    //                   ╰───────────────────────────╯ ╰──────────────────╯
+                               KC_ESC, KC_BSPC, KC_TAB,      KC_DEL, KC_SPC/*, KC_ENT*/),
+    //                       ╰───────────────────────────╯ ╰──────────────────╯
+
+    [_LAYER_MOUSE] = LAYOUT_charybdis_3x5(
+        _______, _______, _______, _______, _______,    KC_WH_U, DPI_RMOD,DPI_MOD, S_D_RMOD,S_D_MOD,
+        _______, SNIPING, KC_LCTL, KC_LSFT, KC_LGUI,    KC_WH_D, KC_BTN1, KC_BTN3, KC_BTN2, KC_BTN6,
+        _______, KC_LALT, _______, _______, _______,    KC_BTN7, KC_BTN4, KC_BTN5, KC_BTN8, _______,
+                          KC_BTN3, KC_BTN1, KC_BTN2,    _______, _______
+                                )
 };
 
-  /*[_MOU] = LAYOUT_charybdis_3x5(
-  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-      _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-      _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-      _______, _______, _______, _______, _______,    _______, KC_BTN1, KC_BTN3, KC_BTN2, _______,
-  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                        _______, _______, _______,    _______, _______
-  //                   ╰───────────────────────────╯ ╰──────────────────╯
-                                ),
+    /*
+
+
+                              // Mouse.
+#define LAYOUT_LAYER_MOUSE                                                                    \
+S_D_MOD, USR_PST, USR_CPY, USR_CUT, USR_UND, USR_RDO, USR_PST, USR_CPY, USR_CUT, USR_UND, \
+DPI_MOD, DRGSCRL, KC_LSFT, KC_LCTL, _______,    U_NU,    MS_L,    MS_D,    MS_U,    MS_R, \
+USR_RDO, USR_PST, USR_CPY, USR_CUT, USR_UND,    U_NU,    WH_L,    WH_D,    WH_U,    WH_R, \
+KC_BTN2, KC_BTN1, KC_BTN3, KC_BTN1, KC_BTN3
 */
 
 /* // clang-format on */
