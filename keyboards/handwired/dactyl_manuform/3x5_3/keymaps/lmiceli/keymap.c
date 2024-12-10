@@ -2,6 +2,12 @@
 
 /*
  *
+ qmk flash -kb handwired/dactyl_manuform/3x5_3 -km lmiceli
+ no funciona, voy a probar:
+ make handwired/dactyl_manuform/3x5_3:lmiceli:flash
+ sigue teniendo problemas para encontrar el folder o yo que se que mierda
+ T
+ *
  * // this is only for the first time of setting ee hands?
  *
    qmk flash -kb handwired/dactyl_manuform/3x5_3 -km lmiceli -bl :avrdude-split-left
@@ -17,15 +23,7 @@ enum skeletyl_tap_dances {
 };
 
 
-enum layers {
-    _COLEMAK = 0,
-    _NAVIGATION,
-    _ARROW,
-    _MOUSE,
-    _SYMBOL,
-    _NUMBER,
-    _FUNCTION,
-};
+
 
 /*  */
 /* ALT TAB */
@@ -63,7 +61,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_TAB);
             }
             break;
-        return false;
+R        return false;
      }
   return true;
 }
@@ -72,16 +70,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[0] = LAYOUT_split_3x5_3(
-
-LGUI_T(KC_Q), KC_W,         KC_F,         KC_P,         KC_B,         /**/ KC_J,  KC_L,         KC_U,         KC_Y,         LGUI_T(KC_QUOT),
-/*LT(3,KC_A)*/                                          /*TD(TD_G_CAPS)*/                                             /*LT(6,KC_O)*/
-KC_A,         LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), KC_G,         /**/ KC_M,  LSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), KC_O,
-
-KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,         /**/ KC_K,  LT_MOUSE_H,   KC_COMM,      KC_DOT,       KC_SLSH,
-
-			            // LT_NAV_ESC,   LT_ARROW_BSPC, TG(_MOUSE),      /**/ LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
-			            //LT_NAV_ESC,   LT_ARROW_BSPC, TD(TD_TAB_MOUSE),    /**/ LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
-                        LT_NAV_ESC,   LT_ARROW_BSPC, LT_MOUSE_TAB,    /**/  LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    LGUI_T(KC_Q),     KC_W,         KC_F,         KC_P,         KC_B,          KC_J,            KC_L,         KC_U,         KC_Y,    LGUI_T(KC_QUOT),
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    LT(3,KC_A),   LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T),     KC_G,          KC_M,        LSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I),   LT(6,KC_O),
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+        KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,          KC_K,         LT_MOUSE_H,   KC_COMM,      KC_DOT,       KC_SLSH,
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                LT_NAV_ESC,   LT_ARROW_SP,  LT_MOUSE_TAB,    LT_NUMBER_BSP, LT_SYMBOL_ENT
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+                         LT_NAV_ESC,   LT_ARROW_BSPC    /**/  LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
 	),
 
 /* DESKTOP NAVIGATION LAYER */
