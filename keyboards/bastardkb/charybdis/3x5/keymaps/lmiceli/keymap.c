@@ -14,18 +14,6 @@ enum userspace_keycodes {
     SCLN_DRG = SAFE_RANGE,
 };
 
-enum layers {
-    _COLEMAK = 0,
-    _NAVIGATION,
-    _ARROW,
-    _MOUSE,
-    _SYMBOL,
-    _NUMBER,
-    _FUNCTION,
-    _LAYER_MOUSE,
-};
-
-/*  */
 /* ALT TAB */
 bool is_alt_tab_active = false;
 
@@ -89,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
         KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,         /**/ KC_K,  LT_MOUSE_H,   KC_COMM,      KC_DOT,       KC_SLSH,
         // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-        LT_NAV_ESC,   LT_ARROW_BSPC, LT_MOUSE_TAB,            LT_SYMBOL_ENT, LT_NUMBER_SPC
+        LT_NAV_ESC,   LT_ARROW_BSPC, LT_MOUSE_TAB,            LT_SYMBOL_ENT, LT_NUMBER_SPC/*when applying new keymap, lgui from here probably go to kc_slash as mod tap*/
         //                   ╰───────────────────────────╯ ╰──────────────────╯
         ),
 
