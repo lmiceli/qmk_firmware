@@ -2,28 +2,29 @@
 
 /*
  *
- qmk flash -kb handwired/dactyl_manuform/3x5_3 -km lmiceli
- no funciona, voy a probar:
- make handwired/dactyl_manuform/3x5_3:lmiceli:flash
- sigue teniendo problemas para encontrar el folder o yo que se que mierda
- T
+ make handwired/dactyl_minidox:lmiceli:flash
+
+ qmk flash -kb handwired/dactyl_minidox -km lmiceli
  *
  * // this is only for the first time of setting ee hands?
  *
-   qmk flash -kb handwired/dactyl_manuform/3x5_3 -km lmiceli -bl :avrdude-split-left
-   qmk flash -kb handwired/dactyl_manuform/3x5_3 -km lmiceli -bl :avrdude-split-right
+   qmk flash -kb handwired/dactyl_minidox -km lmiceli -bl :avrdude-split-left
+   qmk flash -kb handwired/dactyl_minidox -km lmiceli -bl :avrdude-split-right
 */
 
 /*  */
 
-enum skeletyl_tap_dances {
-    //   TD_Q_GUI
-    TD_G_CAPS,
-    TD_TAB_MOUSE
+/* new for sync most of my existing keymaps */
+enum layers {
+    _COLEMAK = 0,
+    _NAVIGATION,
+    _ARROW,
+    _MOUSE,
+    _SYMBOL,
+    _NUMBER,
+    _FUNCTION,
+    _LAYER_MOUSE,/*auto for trackball*/
 };
-
-
-
 
 /*  */
 /* ALT TAB */
@@ -32,10 +33,10 @@ bool is_alt_tab_active = false;
 enum custom_keycodes {          // Make sure have the awesome keycode ready
   ALT_TAB         = SAFE_RANGE,
   LT_NAV_ESC      = LT(_NAVIGATION, KC_ESC),
-  LT_ARROW_BSPC   = LT(_ARROW, KC_BSPC),
+  LT_ARROW_SP     = LT(_ARROW, KC_SPC),
   LT_MOUSE_TAB    = LT(_MOUSE, KC_TAB),
   LT_FUNCTION_DEL = LT(_FUNCTION, KC_DEL),
-  LT_NUMBER_SPC   = LT(_NUMBER, KC_SPC),
+  LT_NUMBER_BSP   = LT(_NUMBER, KC_BSPC),
   LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
   LT_MOUSE_H      = LT(_MOUSE, KC_H),
 };
@@ -61,7 +62,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_TAB);
             }
             break;
-R        return false;
+        return false;
      }
   return true;
 }
@@ -77,9 +78,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
         KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,          KC_K,         LT_MOUSE_H,   KC_COMM,      KC_DOT,       KC_SLSH,
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                LT_NAV_ESC,   LT_ARROW_SP,  LT_MOUSE_TAB,    LT_NUMBER_BSP, LT_SYMBOL_ENT
+                                LT_NAV_ESC,   LT_ARROW_SP,  LT_MOUSE_TAB,    LT_NUMBER_BSP, LT_SYMBOL_ENT,LT_FUNCTION_DEL
 //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
-                         LT_NAV_ESC,   LT_ARROW_BSPC    /**/  LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
+//                         LT_NAV_ESC,   LT_ARROW_BSPC    /**/  LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
 	),
 
 /* DESKTOP NAVIGATION LAYER */
@@ -146,78 +147,3 @@ QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO, /**/ KC_NO, KC_WH_L, KC_BTN1,   KC_WH
 	KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,      KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
 	              KC_ESC, KC_BSPC, KC_TAB,    KC_DEL, KC_SPC, KC_ENT)
 };
-
-// Tap Dance Definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for Q, twice for ESC
-    //[TD_Q_GUI] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_LGUI)
-    [TD_G_CAPS] =  ACTION_TAP_DANCE_DOUBLE(KC_G, KC_CAPS),
-    [TD_TAB_MOUSE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_M, 3)
-};
-
-
-
-// Quantum keys / Abbreviations
-// BAK/IDEAS
-/*
-enum custom_keycodes {
-    VVV = KC_TRNS,
-    XXX = KC_NO,
-    CSA_Q = MEH_T(KC_Q),
-    CSA_F1 = MEH_T(KC_F1),
-    CSA_1 = MEH_T(KC_1),
-    CA_W = LCA_T(KC_W),
-    CA_F2 = LCA_T(KC_F2),
-    CA_2 = LCA_T(KC_2),
-    CS_E = C_S_T(KC_E),
-    CS_F = C_S_T(KC_F),
-    CS_I = C_S_T(KC_I),
-    CS_U = C_S_T(KC_U),
-    CS_F3 = C_S_T(KC_F3),
-    CS_3 = C_S_T(KC_3),
-    CS_F8 = C_S_T(KC_F8),
-    CS_8 = C_S_T(KC_8),
-    CA_O = LCA_T(KC_O),
-    CA_Y = LCA_T(KC_Y),
-    CA_F9 = LCA_T(KC_F9),
-    CA_9 = LCA_T(KC_9),
-    CSA_P = MEH_T(KC_P),
-    CSA_SCLN = MEH_T(KC_SCLN),
-    CSA_F10 = MEH_T(KC_F10),
-    CSA_0 = MEH_T(KC_0),
-    LGUI_A = LGUI_T(KC_A),
-    LGUI_FIND = LGUI_T(KC_FIND),
-    LGUI_GRV = LGUI_T(KC_GRV),
-    LALT_S = LALT_T(KC_S),
-    LALT_R = LALT_T(KC_R),
-    LALT_HOME = LALT_T(KC_HOME),
-    LCTL_D = LCTL_T(KC_D),
-    LCTL_S = LCTL_T(KC_S),
-    LCTL_PGUP = LCTL_T(KC_PGUP),
-    LCTL_LBRC = LCTL_T(KC_LBRC),
-    LSFT_F = LSFT_T(KC_F),
-    _LSFT_T = LSFT_T(KC_T),
-    LSFT_PGDN = LSFT_T(KC_PGDN),
-    LSFT_RBRC = LSFT_T(KC_RBRC),
-    RSFT_J = RSFT_T(KC_J),
-    RSFT_N = RSFT_T(KC_N),
-    RSFT_DOWN = RSFT_T(KC_DOWN),
-    RSFT_MINS = RSFT_T(KC_MINS),
-    RCTL_K = RCTL_T(KC_K),
-    RCTL_E = RCTL_T(KC_E),
-    RCTL_UP = RCTL_T(KC_UP),
-    RCTL_EQL = RCTL_T(KC_EQL),
-    RALT_L = RALT_T(KC_L),
-    RALT_I = RALT_T(KC_I),
-    RALT_RGHT = RALT_T(KC_RGHT),
-    RALT_BSLS = RALT_T(KC_BSLS),
-    RGUI_SCLN = RGUI_T(KC_SCLN),
-    RGUI_O = RGUI_T(KC_O),
-    RGUI_F11 = RGUI_T(KC_F11),
-    RGUI_QUOT = RGUI_T(KC_QUOT),
-    LT3_SPC = LT(3,KC_SPC),
-    LT2_TAB = LT(2,KC_TAB),
-    DF_QWERTY = DF(0),
-    DF_COLEMAK = DF(1),
-};
-*/

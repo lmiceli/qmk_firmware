@@ -67,6 +67,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true; // We didn't handle other keypresses
 }
 
+/* new for sync most of my existing keymaps */
+enum layers {
+    _COLEMAK = 0,
+    _NAVIGATION,
+    _ARROW,
+    _MOUSE,
+    _SYMBOL,
+    _NUMBER,
+    _FUNCTION,
+    _LAYER_MOUSE,/*auto for trackball*/
+};
+
 /* // clang-format off */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAK] = LAYOUT_charybdis_3x5(

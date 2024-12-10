@@ -1,19 +1,3 @@
-/* new for sync most of my existing keymaps */
-enum layers {
-    _COLEMAK = 0,
-    _NAVIGATION,
-    _ARROW,
-    _MOUSE,
-    _SYMBOL,
-    _NUMBER,
-    _FUNCTION,
-    _LAYER_MOUSE,/*auto for trackball*/
-};
-
-#define  MO(_SYM)
-
-
-
 
 /* Layers */
 #define L_SYM MO(_SYM)
