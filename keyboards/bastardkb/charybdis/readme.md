@@ -28,7 +28,7 @@ qmk compile -kb bastardkb/charybdis/{LAYOUT}/{VERSION}/elitec -km {KEYMAP}
 
 See below for populated commands per layout
 
-The `default` keymap is inspired from the original [Dactyl Manuform](../../handwired/dactyl_manuform) layout.
+The `default` keymap is inspired from the original [Dactyl Manuform](../../handwired/dactyl_manuform_bak) layout.
 
 Check out the `via` layout if you're looking for VIA support.
 
