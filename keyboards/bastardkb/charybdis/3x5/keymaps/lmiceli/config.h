@@ -16,14 +16,17 @@
  */
 #pragma once
 
+// the delay when reading the value of the pin (5 is default)
 #define DEBOUNCE 5
 
-
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
+// did not see improvements (tested lightly)
 //#define SPLIT_USB_DETECT
-#define NO_USB_STARTUP_CHECK
+//#define NO_USB_STARTUP_CHECK
 
-#undef SPLIT_USB_DETECT
+// trying many ways to get the keyboard to wake after mac sleep
+//#undef SPLIT_USB_DETECT
+#define USB_SUSPEND_WAKEUP_DELAY 200
 
 
 // mod tap
@@ -61,8 +64,6 @@
 #define MOUSEKEY_WHEEL_INTERVAL 50
 // The default is 40
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100
-
-
 
 /* RGB Matrix. */
 
