@@ -105,8 +105,8 @@ _______   , _______, _______, _______, _______   ,     KC_CAPS   , KC_F11 , KC_F
 ),
 
     [_MOUSE] = LAYOUT_charybdis_3x5(
-QK_RBT , KC_WH_D, _______, KC_WH_U, _______,    KC_WH_U, DPI_RMOD, DPI_MOD, S_D_RMOD, S_D_MOD,
-SNIPING, KC_LALT, KC_LGUI, KC_LSFT, KC_LCTL,    KC_WH_D, KC_BTN1 , KC_BTN3, KC_BTN2 , KC_BTN6,
+QK_RBT , KC_WH_D, KC_BTN2, KC_BTN1, KC_WH_U,    KC_WH_D, DPI_RMOD, DPI_MOD, S_D_RMOD, S_D_MOD,
+SNIPING, KC_LALT, KC_LGUI, KC_LSFT, KC_LCTL,    KC_WH_U, KC_BTN1 , KC_BTN3, KC_BTN2 , KC_BTN6,
 QK_BOOT, _______, _______, KC_BTN3, _______,    KC_BTN7, KC_BTN4 , KC_BTN5, KC_BTN8 , _______,
                   KC_BTN2, KC_BTN1, _______,    KC_WH_L, KC_WH_R
 ),
