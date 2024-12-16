@@ -21,20 +21,20 @@
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 // did not see improvements (tested lightly)
-//#define SPLIT_USB_DETECT
-//#define NO_USB_STARTUP_CHECK
+// but seems I have V3's so I will leave it
+#define SPLIT_USB_DETECT
+#define NO_USB_STARTUP_CHECK
 
 // trying many ways to get the keyboard to wake after mac sleep
 //#undef SPLIT_USB_DETECT
 #define USB_SUSPEND_WAKEUP_DELAY 200
-
 
 // mod tap
 #define PERMISSIVE_HOLD
 #define TAPPING_FORCE_HOLD
 
 // additional for home row mods
-#define TAPPING_TERM 160
+#define TAPPING_TERM 180
 
 #define QUICK_TAP_TERM 0
 
@@ -43,11 +43,19 @@
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD`
 // #define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+#define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+#define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS 1000
+
 
 // Flip horizontal direction for drag-scroll.
-#    define CHARYBDIS_DRAGSCROLL_REVERSE_X
-// #define CHARYBDIS_DRAGSCROLL_REVERSE_Y
+//#define CHARYBDIS_DRAGSCROLL_REVERSE_X
+//#define CHARYBDIS_DRAGSCROLL_REVERSE_Y
 #endif // POINTING_DEVICE_ENABLE
+
+#define CHARYBDIS_MINIMUM_DEFAULT_DPI 1200
+#define CHARYBDIS_DEFAULT_DPI_CONFIG_STEP 400
+#define CHARYBDIS_MINIMUM_SNIPING_DPI 200
+#define CHARYBDIS_SNIPING_DPI_CONFIG_STEP 100
 
 // Set the mouse settings to a comfortable speed/accuracy trade-off,
 // assuming a screen refresh rate of 60 Htz or higher
@@ -64,7 +72,34 @@
 #define MOUSEKEY_WHEEL_INTERVAL 50
 // The default is 40
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100
+/*
+ *
+  Drag-scroll
 
+Use the DRAGSCROLL_MODE keycode to enable drag-scroll on hold. Use the DRAGSCROLL_TOGGLE keycode to enable/disable drag-scroll on key press.
+
+Sniping
+
+   Use the SNIPING_MODE keycode to enable sniping mode on hold. Use the SNIPING_MODE_TOGGLE (aliased as SNP_TOG) keycode to enable/disable sniping mode on key press.
+
+ Change the value of CHARYBDIS_AUTO_SNIPING_ON_LAYER to automatically enable sniping mode on layer change. By default, sniping mode is enabled on the pointer layer:
+
+#define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
+  Auto pointer layer
+
+  The pointer layer can be automatically enabled when moving the trackball. To enable or disable this behavior, add or remove the following define:
+
+#define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+  By default, the layer is turned off 1 second after the last registered trackball movement:
+
+#define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS 1000
+  The trigger sensibility can also be tuned. The lower the value, the more sensible the trigger:
+
+#define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD 8
+
+    *
+ *
+ * */
 /* RGB Matrix. */
 
 //#ifdef RGB_MATRIX_ENABLE

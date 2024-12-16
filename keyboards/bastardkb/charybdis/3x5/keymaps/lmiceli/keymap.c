@@ -1,16 +1,17 @@
 #include QMK_KEYBOARD_H
 
+#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+#    include "timer.h"
+#endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+
 /*
- *
  * make bastardkb/charybdis/3x5/v1/elitec:lmiceli:flash
- * por lo q sea en v2 no me funciona la bola
- *
  * */
 
 //#define SLH_MOU LT(_MOU, KC_SLSH)
 
 enum layers {
-    _COLEMAK = 0,
+    _COLEMAK = 0,ppn
     _NAVIGATION,
     _ARROW,
     _MOUSE, /*todo auto when trackball*/
@@ -19,10 +20,25 @@ enum layers {
     _FUNCTION,
 };
 
-enum userspace_keycodes {
+//enum userspace_keycodes {
     /* SCLN_DRG = CHARYBDIS_SAFE_RANGE, */
-    SCLN_DRG = SAFE_RANGE,
-};
+//    SCLN_DRG = SAFE_RANGE,
+//};
+
+// Automatically enable sniping-mode on the pointer layer.
+//#define CHARYBDIS_AUTO_SNIPING_ON_LAYER _MOUSE
+
+#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+static uint16_t auto_pointer_layer_timer = 0;
+
+#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
+#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS 1000
+#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
+
+#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
+#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD 8
+#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
+#endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
 /* ALT TAB */
 bool is_alt_tab_active = false;
@@ -49,9 +65,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static uint16_t my_hash_timer;
+//    static uint16_t my_hash_timer;
     switch (keycode) {
-        case SCLN_DRG:
+            // todo todox is this working? should I let it fall through to default keymap? is that how this works?
+        /*case SCLN_DRG:
             if (record->event.pressed) {
                 my_hash_timer = timer_read();
                 charybdis_set_pointer_dragscroll_enabled(!charybdis_get_pointer_dragscroll_enabled());
@@ -61,7 +78,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     SEND_STRING(";"); // Change the character(s) to be sent on tap here
                 }
             }
-            return false; // We handled this keypress
+            return false;*/ // We handled this keypress
         /*case ALT_TAB: // super alt tab macro
             if (record->event.pressed) {
                 if (!is_alt_tab_active) {
@@ -133,6 +150,48 @@ KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,       _______, _______, _______, _______, _
 )
 
 };
+
+// copied from via keymap (not sure what I am doing)
+
+#ifdef POINTING_DEVICE_ENABLE
+#    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    if (abs(mouse_report.x) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD || abs(mouse_report.y) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD) {
+        if (auto_pointer_layer_timer == 0) {
+            layer_on(_MOUSE);
+#        ifdef RGB_MATRIX_ENABLE
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+            rgb_matrix_sethsv_noeeprom(HSV_GREEN);
+#        endif // RGB_MATRIX_ENABLE
+        }
+        auto_pointer_layer_timer = timer_read();
+    }
+    return mouse_report;
+}
+
+void matrix_scan_user(void) {
+    if (auto_pointer_layer_timer != 0 && TIMER_DIFF_16(timer_read(), auto_pointer_layer_timer) >= CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS) {
+        auto_pointer_layer_timer = 0;
+        layer_off(_MOUSE);
+#        ifdef RGB_MATRIX_ENABLE
+        rgb_matrix_mode_noeeprom(RGB_MATRIX_DEFAULT_MODE);
+#        endif // RGB_MATRIX_ENABLE
+    }
+}
+#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+
+#    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
+layer_state_t layer_state_set_user(layer_state_t state) {
+    charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
+    return state;
+}
+#    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
+#endif     // POINTING_DEVICE_ENABLE
+
+
+
+
+
 
     /*
 
