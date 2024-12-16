@@ -151,6 +151,7 @@ KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,       _______, _______, _______, _______, _
 
 };
 
+// AUTO MOUSE LAYER (disabled in config.h atm)
 // copied from via keymap (not sure what I am doing)
 
 #ifdef POINTING_DEVICE_ENABLE
