@@ -11,7 +11,7 @@
 //#define SLH_MOU LT(_MOU, KC_SLSH)
 
 enum layers {
-    _COLEMAK = 0,ppn
+    _COLEMAK = 0,
     _NAVIGATION,
     _ARROW,
     _MOUSE, /*todo auto when trackball*/
@@ -64,9 +64,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //    static uint16_t my_hash_timer;
-    switch (keycode) {
+//    switch (keycode) {
             // todo todox is this working? should I let it fall through to default keymap? is that how this works?
         /*case SCLN_DRG:
             if (record->event.pressed) {
@@ -90,9 +90,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_TAB);
             }
             break;*/
-    }
-    return true; // We didn't handle other keypresses
-}
+//    }
+//    return true; // We didn't handle other keypresses
+//}
 
 /* // clang-format off */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
