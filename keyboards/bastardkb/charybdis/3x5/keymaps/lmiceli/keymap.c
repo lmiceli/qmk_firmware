@@ -8,7 +8,7 @@
  * make bastardkb/charybdis/3x5/v1/elitec:lmiceli:flash
  * */
 
-//#define SLH_MOU LT(_MOU, KC_SLSH)
+// #define SLH_MOU LT(_MOU, KC_SLSH)
 
 enum layers {
     _COLEMAK = 0,
@@ -20,13 +20,8 @@ enum layers {
     _FUNCTION,
 };
 
-//enum userspace_keycodes {
-    /* SCLN_DRG = CHARYBDIS_SAFE_RANGE, */
-//    SCLN_DRG = SAFE_RANGE,
-//};
-
 // Automatically enable sniping-mode on the pointer layer.
-//#define CHARYBDIS_AUTO_SNIPING_ON_LAYER _MOUSE
+// #define CHARYBDIS_AUTO_SNIPING_ON_LAYER _MOUSE
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 static uint16_t auto_pointer_layer_timer = 0;
@@ -43,8 +38,9 @@ static uint16_t auto_pointer_layer_timer = 0;
 /* ALT TAB */
 bool is_alt_tab_active = false;
 
-enum custom_keycodes {          // Make sure have the awesome keycode ready
-//    ALT_TAB         = SAFE_RANGE,
+enum custom_keycodes { // Make sure have the awesome keycode ready
+    ALT_TAB         = SAFE_RANGE,
+    SCL_DRG,
     LT_NAV_ESC      = LT(_NAVIGATION, KC_ESC),
     LT_ARROW_SPC    = LT(_ARROW, KC_SPC),
     LT_MOUSE_TAB    = LT(_MOUSE, KC_TAB),
@@ -64,11 +60,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-//bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//    static uint16_t my_hash_timer;
-//    switch (keycode) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static uint16_t my_hash_timer;
+    switch (keycode) {
             // todo todox is this working? should I let it fall through to default keymap? is that how this works?
-        /*case SCLN_DRG:
+        case SCL_DRG:
             if (record->event.pressed) {
                 my_hash_timer = timer_read();
                 charybdis_set_pointer_dragscroll_enabled(!charybdis_get_pointer_dragscroll_enabled());
@@ -78,8 +74,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
                     SEND_STRING(";"); // Change the character(s) to be sent on tap here
                 }
             }
-            return false;*/ // We handled this keypress
-        /*case ALT_TAB: // super alt tab macro
+            return false; // We handled this keypress
+        case ALT_TAB:     // super alt tab macro
             if (record->event.pressed) {
                 if (!is_alt_tab_active) {
                     is_alt_tab_active = true;
@@ -89,10 +85,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             } else {
                 unregister_code(KC_TAB);
             }
-            break;*/
-//    }
-//    return true; // We didn't handle other keypresses
-//}
+            return false;
+    }
+    return true; // We didn't handle other keypresses
+}
 
 /* // clang-format off */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -117,12 +113,12 @@ _______, _______      , _______    , _______      , _______,     G(KC_MINS)  , R
     [_ARROW] = LAYOUT_charybdis_3x5(
 KC_LCTL   , KC_BTN3, KC_BTN2, KC_BTN1, _______   ,     KC_PGUP   , KC_HOME, KC_UP  , KC_END , KC_PGDN   ,
 A(KC_LEFT), KC_LALT, KC_LGUI, KC_LSFT, A(KC_RGHT),     G(KC_PGUP), KC_LEFT, KC_DOWN, KC_RGHT, G(KC_PGDN),
-_______   , _______, _______, _______, _______   ,     KC_CAPS   , KC_F11 , KC_F7  , KC_F8  , KC_F9     ,
+_______   , _______, _______, ALT_TAB, _______   ,     KC_CAPS   , KC_F11 , KC_F7  , KC_F8  , KC_F9     ,
                    A(KC_TAB), _______, _______   ,     KC_DEL    , KC_BSPC
 ),
 
     [_MOUSE] = LAYOUT_charybdis_3x5(
-QK_RBT , KC_WH_D, KC_BTN2, KC_BTN1, KC_WH_U,    KC_WH_D, DPI_RMOD, DPI_MOD, S_D_RMOD, S_D_MOD,
+QK_RBT , KC_WH_D, SCL_DRG, KC_BTN1, KC_WH_U,    KC_WH_D, DPI_RMOD, DPI_MOD, S_D_RMOD, S_D_MOD,
 SNIPING, KC_LALT, KC_LGUI, KC_LSFT, KC_LCTL,    KC_WH_U, KC_BTN1 , KC_BTN3, KC_BTN2 , KC_BTN6,
 QK_BOOT, _______, _______, KC_BTN3, _______,    KC_BTN7, KC_BTN4 , KC_BTN5, KC_BTN8 , _______,
                   KC_BTN2, KC_BTN1, _______,    KC_WH_L, KC_WH_R
@@ -189,15 +185,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
 #endif     // POINTING_DEVICE_ENABLE
 
+/*
 
 
-
-
-
-    /*
-
-
-                              // Mouse.
+                          // Mouse.
 #define LAYOUT_LAYER_MOUSE                                                                    \
 S_D_MOD, USR_PST, USR_CPY, USR_CUT, USR_UND, USR_RDO, USR_PST, USR_CPY, USR_CUT, USR_UND, \
 DPI_MOD, DRGSCRL, KC_LSFT, KC_LCTL, _______,    U_NU,    MS_L,    MS_D,    MS_U,    MS_R, \
