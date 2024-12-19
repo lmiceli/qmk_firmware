@@ -1,0 +1,22 @@
+things to try from reddit post:
+
+Anytime I start up my PC, I need to unplug and re-plug in my keyboard for it to start working.
+
+I have tried the following:
+
+Using only #undef SPLIT_USB_DETECT
+Using #undef SPLIT_USB_DETECT with #define SPLIT_USB_TIMEOUT(_POLL) using 10000 and 10 respectively
+Using #undef SPLIT_USB_DETECT with #define USB_VBUS_PIN GP## using 18, 19, 21 and 28 (I think)
+
+SOLVED: Exclusively used #define SPLIT_USB_TIMEOUT 30000
+
+_____________________________________
+
+drashna:
+
+
+if your controller isn't actually wired up for VBUS detection,
+then adding the defines won't help. And you don't need to undef split usb detect, if you have the vbus pin defined.
+
+Also, most likely, you absolutely need split usb detect (as it's the only alternative to vbus detection).
+However, you may need to also define SPLIT_WATCHDOG_ENABLE
