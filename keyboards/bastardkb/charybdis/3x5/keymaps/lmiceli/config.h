@@ -17,13 +17,15 @@
 #pragma once
 
 // the delay when reading the value of the pin (5 is default)
-#define DEBOUNCE 5
+#define DEBOUNCE 7
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 // did not see improvements (tested lightly)
 // but seems I have V3's so I will leave it
 #define SPLIT_USB_DETECT
-#define NO_USB_STARTUP_CHECK
+//#define NO_USB_STARTUP_CHECK
+
+#define SPLIT_USB_TIMEOUT 30000
 
 // trying many ways to get the keyboard to wake after mac sleep
 //#undef SPLIT_USB_DETECT
@@ -34,9 +36,9 @@
 #define TAPPING_FORCE_HOLD
 
 // additional for home row mods
-#define TAPPING_TERM 180
+#define TAPPING_TERM 190
 
-#define QUICK_TAP_TERM 0
+//#define QUICK_TAP_TERM 0
 
 #ifdef POINTING_DEVICE_ENABLE
 // Automatically enable the pointer layer when moving the trackball.  See also:
