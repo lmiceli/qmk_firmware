@@ -46,10 +46,10 @@
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD`
 // #define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
-// UPDATE 16/12/2024 disabled auto mouse as it sucks or is hard to configure
+// UPDATE 16/12/2024 disabled auto mouse as it sucks or is hard to configure¥
 //#define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 //#define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS 1000
-//#define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD 4
+//#define CHARYBDIS_AUTO_POINTER_fLAYER_TRIGGER_THRESHOLD 4
 
 // Flip horizontal direction for drag-scroll.
 //#define CHARYBDIS_DRAGSCROLL_REVERSE_X
