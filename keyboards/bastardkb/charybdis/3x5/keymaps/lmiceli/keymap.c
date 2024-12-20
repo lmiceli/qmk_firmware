@@ -110,11 +110,11 @@ _______, _______      , _______    , _______      , _______,     G(KC_MINS)  , R
                         KC_BTN3    , KC_BTN1      , KC_BTN2,     LAG(KC_LEFT), RCS(KC_DEL) /*,LAG(KC_RGHT)*/
 ),
 
-    [_ARROW] = LAYOUT_charybdis_3x5(
-KC_LCTL   , KC_BTN3, KC_BTN2, KC_BTN1, _______   ,     KC_PGUP   , KC_HOME, KC_UP  , KC_END , KC_PGDN   ,
-A(KC_LEFT), KC_LALT, KC_LGUI, KC_LSFT, A(KC_RGHT),     G(KC_PGUP), KC_LEFT, KC_DOWN, KC_RGHT, G(KC_PGDN),
-_______   , _______, _______, ALT_TAB, _______   ,     KC_CAPS   , KC_F11 , KC_F7  , KC_F8  , KC_F9     ,
-                   A(KC_TAB), _______, _______   ,     KC_DEL    , KC_BSPC
+[_ARROW] = LAYOUT_charybdis_3x5(
+KC_LCTL         , KC_BTN3, KC_BTN2, KC_BTN1, _______      ,     KC_PGUP   , KC_HOME, KC_UP  , KC_END , KC_PGDN   ,
+SNIPING         , KC_LALT, KC_LGUI, KC_LSFT, ALT_TAB      ,     G(KC_PGUP), KC_LEFT, KC_DOWN, KC_RGHT, G(KC_PGDN),
+A(G(KC_LEFT))   , _______, _______, SCL_DRG, A(G(KC_RGHT)),     KC_CAPS   , KC_F11 , KC_F7  , KC_F8  , KC_F9     ,
+                           _______, _______, _______      ,     KC_DEL    , KC_BSPC
 ),
 
     [_MOUSE] = LAYOUT_charybdis_3x5(
