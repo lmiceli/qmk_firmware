@@ -18,6 +18,7 @@ enum layers {
     _SYMBOL,
     _NUMBER,
     _FUNCTION,
+    _MISC,
 };
 
 // Automatically enable sniping-mode on the pointer layer.
@@ -40,8 +41,15 @@ bool is_alt_tab_active = false;
 
 enum custom_keycodes { // Make sure have the awesome keycode ready
     ALT_TAB         = SAFE_RANGE,
-    SCL_DRG,
+
+    K_DPI           ,
+    K_DPI_SNIP      ,
+    K_ENIE          ,
+
+    SCL_DRG         ,
+
     LT_NAV_ESC      = LT(_NAVIGATION, KC_ESC),
+    LT_MISC_ESC     = LT(_MISC, KC_ESC),
     LT_ARROW_SPC    = LT(_ARROW, KC_SPC),
     LT_MOUSE_TAB    = LT(_MOUSE, KC_TAB),
     LT_FUNCTION_DEL = LT(_FUNCTION, KC_DEL),
@@ -50,6 +58,8 @@ enum custom_keycodes { // Make sure have the awesome keycode ready
     LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
     LT_MOUSE_H      = LT(_MOUSE, KC_H),
     LT_NAV_A        = LT(_NAVIGATION, KC_A),
+
+
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -86,6 +96,79 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_TAB);
             }
             return false;
+
+        case K_DPI:
+            if (record->event.pressed) {
+                uint16_t dpi = charybdis_get_pointer_default_dpi();
+                // no consigo pasarlo a string y q send_string lo procese
+                if (dpi == 1200){
+                    SEND_STRING(" 1200");
+                } else if (dpi == 1600){
+                    SEND_STRING(" 1600");
+                } else if (dpi == 800){
+                    SEND_STRING(" 800");
+                } else if (dpi == 400){
+                    SEND_STRING(" 400");
+                } else if (dpi == 2000){
+                    SEND_STRING(" 2000");
+                } else if (dpi == 2400){
+                    SEND_STRING(" 2400");
+                } else if (dpi == 2800){
+                    SEND_STRING(" 2800");
+                } else if (dpi == 3200){
+                    SEND_STRING(" 3200");
+                } else if (dpi == 3600){
+                    SEND_STRING(" 3600");
+                } else if (dpi == 4000){
+                    SEND_STRING(" 4000");
+                } else if (dpi == 4400){
+                    SEND_STRING(" 4400");
+                } else if (dpi == 4800){
+                    SEND_STRING(" 4800");
+                } else if (dpi == 5200){
+                    SEND_STRING(" 5200");
+                } else if (dpi == 5600){
+                    SEND_STRING(" 5600");
+                } else if (dpi >= 6000){
+                    SEND_STRING(" >6000");
+                } else if (dpi <= 1200){
+                    SEND_STRING(" <1200");
+                } else if (dpi == 6800){
+                    SEND_STRING(" 6800");
+                } else if (dpi == 7200){
+                    SEND_STRING(" 7200");
+                } else {
+                    SEND_STRING(" ?");
+                }
+            } else { }
+            return false;
+
+        case K_DPI_SNIP:
+            if (record->event.pressed) {
+                uint16_t dpi = charybdis_get_pointer_sniping_dpi();
+                if (dpi == 200){
+                    SEND_STRING(" s 200");
+                } else if (dpi == 300){
+                    SEND_STRING(" s 300");
+                } else if (dpi == 400){
+                    SEND_STRING(" s 400");
+                } else if (dpi == 500){
+                    SEND_STRING(" s 500");
+                } else if (dpi <= 200){
+                    SEND_STRING(" s <200");
+                } else {
+                    SEND_STRING(" s ?");
+                }
+            } else { }
+            return false;
+
+//            en principio esto no va sin hacer toda la configuracinon de https://docs.qmk.fm/features/unicode
+//        case K_ENIE:
+//            if (record->event.pressed) {
+////                send_unicode_string("ñ");
+//            } else { }
+//            return false;
+
     }
     return true; // We didn't handle other keypresses
 }
@@ -97,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 LCTL_T(KC_Q), KC_W         , KC_F        , KC_P        , KC_B,          KC_J          , KC_L        , KC_U        , KC_Y        , LCTL_T(LALT(KC_BSPC)),
 LT_NAV_A    , LALT_T(KC_R) , LGUI_T(KC_S), LSFT_T(KC_T), KC_G,          KC_M          , LSFT_T(KC_N), LGUI_T(KC_E), LALT_T(KC_I), LT_FUNCTION_O        ,
 KC_Z        , KC_X         , KC_C        , KC_D        , KC_V,          KC_K          , LT_MOUSE_H  , KC_COMM     , KC_DOT      , KC_SLSH              ,
-                           LSFT_T(KC_ESC), LT_ARROW_SPC, LT_MOUSE_TAB,  LT_NUMBER_BSPC, LT_SYMBOL_ENT
+                          LSFT_T(KC_ESC) , LT_ARROW_SPC, LT_MOUSE_TAB,  LT_NUMBER_BSPC, LT_SYMBOL_ENT
 
         /*when applying new keymap, lgui from here probably go to kc_slash as mod tap*/
 ),
@@ -118,12 +201,11 @@ A(G(KC_LEFT))   , _______, _______, SCL_DRG, A(G(KC_RGHT)),     KC_CAPS   , KC_F
 ),
 
     [_MOUSE] = LAYOUT_charybdis_3x5(
-QK_RBT , KC_WH_D, SCL_DRG, KC_BTN1, KC_WH_U,    KC_WH_D, DPI_RMOD, DPI_MOD, S_D_RMOD, S_D_MOD,
-SNIPING, KC_LALT, KC_LGUI, KC_LSFT, KC_LCTL,    KC_WH_U, KC_BTN1 , KC_BTN3, KC_BTN2 , KC_BTN6,
-QK_BOOT, _______, _______, KC_BTN3, _______,    KC_BTN7, KC_BTN4 , KC_BTN5, KC_BTN8 , _______,
-                  KC_BTN2, KC_BTN1, _______,    KC_WH_L, KC_WH_R
+QK_RBT , KC_WH_D, SCL_DRG   , KC_BTN1, KC_WH_U,    KC_WH_D, DPI_RMOD, DPI_MOD, S_D_RMOD, S_D_MOD,
+SNIPING, KC_LALT, KC_LGUI   , KC_LSFT, KC_LCTL,    KC_WH_U, KC_BTN1 , KC_BTN3, KC_BTN2 , KC_BTN6,
+QK_BOOT, K_DPI  , K_DPI_SNIP, KC_BTN3, _______,    KC_BTN7, KC_BTN4 , KC_BTN5, KC_BTN8 , _______,
+                  KC_BTN2   , KC_BTN1, _______,    KC_WH_L, KC_WH_R
 ),
-
     [_SYMBOL] = LAYOUT_charybdis_3x5(
 KC_QUOT, KC_LT  , KC_GT  , KC_DQT , KC_DOT ,    KC_AMPR, KC_LBRC, KC_RBRC, KC_SCLN, KC_PERC,
 KC_EXLM, KC_MINS, KC_PLUS, KC_EQL , KC_HASH,    KC_PIPE, KC_LPRN, KC_RPRN, KC_COLN, KC_QUES,
@@ -143,6 +225,12 @@ KC_F12, KC_F7, KC_F8, KC_F9, _______,      _______, _______, _______, KC_LCTL, _
 KC_F11, KC_F4, KC_F5, KC_F6, _______,      _______, KC_LSFT, KC_LGUI, KC_LALT, _______,
 KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,       _______, _______, _______, _______, _______,
               KC_ESC, KC_SPC, KC_TAB,      KC_BSPC, KC_ENT
+),
+    [_MISC] = LAYOUT_charybdis_3x5(
+LCTL_T(KC_Q), KC_W         , KC_F        , KC_P        , KC_B,          KC_J          , KC_L        , KC_U        , KC_Y        , LCTL_T(LALT(KC_BSPC)),
+LT_NAV_A    , KC_LALT      , KC_LGUI     , KC_LSFT     , KC_G,          KC_M          , K_ENIE      , LGUI_T(KC_E), LALT_T(KC_I), LT_FUNCTION_O        ,
+KC_Z        , KC_X         , KC_C        , KC_D        , KC_V,          KC_K          , LT_MOUSE_H  , KC_COMM     , KC_DOT      , KC_SLSH              ,
+        KC_C, KC_C, KC_C,  KC_C, KC_C
 )
 
 };
