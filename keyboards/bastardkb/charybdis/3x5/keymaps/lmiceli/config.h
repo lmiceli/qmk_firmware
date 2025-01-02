@@ -25,7 +25,7 @@
 #define SPLIT_USB_DETECT
 //#define NO_USB_STARTUP_CHECK
 
-#define SPLIT_USB_TIMEOUT 30000
+#define SPLIT_USB_TIMEOUT 10000
 
 // trying many ways to get the keyboard to wake after mac sleep
 //#undef SPLIT_USB_DETECT
@@ -36,7 +36,7 @@
 #define TAPPING_FORCE_HOLD
 
 // additional for home row mods
-#define TAPPING_TERM 190
+#define TAPPING_TERM 170
 
 //#define QUICK_TAP_TERM 0
 
@@ -55,7 +55,7 @@
 //#define CHARYBDIS_DRAGSCROLL_REVERSE_X
 //#define CHARYBDIS_DRAGSCROLL_REVERSE_Y
 #endif // POINTING_DEVICE_ENABLE
-
+// 2400 y 500 (snipe) son buenos valores. sobreviven reseteos (se guardan en eprom)
 #define CHARYBDIS_MINIMUM_DEFAULT_DPI 1200
 #define CHARYBDIS_DEFAULT_DPI_CONFIG_STEP 400
 #define CHARYBDIS_MINIMUM_SNIPING_DPI 200
