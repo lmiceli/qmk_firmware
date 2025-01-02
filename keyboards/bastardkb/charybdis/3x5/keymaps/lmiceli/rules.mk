@@ -14,4 +14,5 @@ OLED_ENABLE = no
 DEBOUNCE_TYPE = asym_eager_defer_pk
 AUTO_SHIFT_ENABLE = no
 BACKLIGHT_ENABLE = no
+UNICODE_COMMON = yes
 
