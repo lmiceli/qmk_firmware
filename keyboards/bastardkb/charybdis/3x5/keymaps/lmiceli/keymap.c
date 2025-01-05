@@ -11,10 +11,10 @@
 // #define SLH_MOU LT(_MOU, KC_SLSH)
 
 enum layers {
-    _COLEMAK = 0,
+    _BASE = 0,
     _NAVIGATION,
     _ARROW,
-    _MOUSE, /*todo auto when trackball*/
+    _MOUSE,
     _SYMBOL,
     _NUMBER,
     _FUNCTION,
@@ -58,8 +58,6 @@ enum custom_keycodes { // Make sure have the awesome keycode ready
     LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
     LT_MOUSE_H      = LT(_MOUSE, KC_H),
     LT_NAV_A        = LT(_NAVIGATION, KC_A),
-
-
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -176,30 +174,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 /* // clang-format off */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  [_COLEMAK] = LAYOUT_charybdis_3x5(
+  [_BASE] = LAYOUT_charybdis_3x5(
 LCTL_T(KC_Q), KC_W         , KC_F        , KC_P        , KC_B,          KC_J          , KC_L        , KC_U        , KC_Y        , LCTL_T(LALT(KC_BSPC)),
-LT_NAV_A    , LALT_T(KC_R) , LGUI_T(KC_S), LSFT_T(KC_T), KC_G,          KC_M          , LSFT_T(KC_N), LGUI_T(KC_E), LALT_T(KC_I), LT_FUNCTION_O        ,
+KC_A        , LALT_T(KC_R) , LGUI_T(KC_S), LSFT_T(KC_T), KC_G,          KC_M          , LSFT_T(KC_N), LGUI_T(KC_E), LALT_T(KC_I), LT_FUNCTION_O        ,
 KC_Z        , KC_X         , KC_C        , KC_D        , KC_V,          KC_K          , LT_MOUSE_H  , KC_COMM     , KC_DOT      , KC_SLSH              ,
-                          LSFT_T(KC_ESC) , LT_ARROW_SPC, LT_MOUSE_TAB,  LT_NUMBER_BSPC, LT_SYMBOL_ENT
-
-        /*when applying new keymap, lgui from here probably go to kc_slash as mod tap*/
+                      LT_NAV_ESC , LT_ARROW_SPC, LT_MOUSE_TAB,          LT_NUMBER_BSPC, LT_SYMBOL_ENT
 ),
-
     /* DESKTOP NAVIGATION LAYER */
     [_NAVIGATION] = LAYOUT_charybdis_3x5(
-_______, _______      , _______    , _______      , _______,     LCAG(KC_1)  , LCAG(KC_2)  , LCAG(KC_3)  , LCAG(KC_4), LCAG(KC_5),
-_______, G(C(KC_LEFT)), G(C(KC_UP)), G(C(KC_RGHT)), _______,     G(KC_PLUS)  , C(KC_LEFT)  , C(KC_RGHT)  , KC_VOLD   , KC_VOLU   ,
-_______, _______      , _______    , _______      , _______,     G(KC_MINS)  , RCS(KC_COMM), RCS( KC_DOT), KC_MPLY   , KC_MUTE   ,
+_______, KC_BTN3      , KC_BTN2    , KC_BTN1      , _______,     LCAG(KC_1)  , LCAG(KC_2)  , LCAG(KC_3)  , LCAG(KC_4), LCAG(KC_5),
+SNIPING, G(C(KC_LEFT)), G(C(KC_UP)), G(C(KC_RGHT)), ALT_TAB,     G(KC_PLUS)  , C(KC_LEFT)  , C(KC_RGHT)  , KC_VOLD   , KC_VOLU   ,
+_______, _______      , _______    , SCL_DRG      , _______,     G(KC_MINS)  , RCS(KC_COMM), RCS( KC_DOT), KC_MPLY   , KC_MUTE   ,
                         KC_BTN3    , KC_BTN1      , KC_BTN2,     LAG(KC_LEFT), RCS(KC_DEL) /*,LAG(KC_RGHT)*/
 ),
-
 [_ARROW] = LAYOUT_charybdis_3x5(
 KC_LCTL         , KC_BTN3, KC_BTN2, KC_BTN1, _______      ,     KC_PGUP   , KC_HOME, KC_UP  , KC_END , KC_PGDN   ,
-SNIPING         , KC_LALT, KC_LGUI, KC_LSFT, ALT_TAB      ,     G(KC_PGUP), KC_LEFT, KC_DOWN, KC_RGHT, G(KC_PGDN),
-A(G(KC_LEFT))   , _______, _______, SCL_DRG, A(G(KC_RGHT)),     KC_CAPS   , KC_F11 , KC_F7  , KC_F8  , KC_F9     ,
+SNIPING         , KC_LALT, KC_LGUI, KC_LSFT, ALT_TAB      ,     KC_F11    , KC_LEFT, KC_DOWN, KC_RGHT, KC_CAPS   ,
+A(G(KC_LEFT))   , _______, _______, SCL_DRG, A(G(KC_RGHT)),     G(KC_PGUP), KC_F7  , KC_F8  , KC_F9  , G(KC_PGDN),
                            _______, _______, _______      ,     KC_DEL    , KC_BSPC
 ),
-
     [_MOUSE] = LAYOUT_charybdis_3x5(
 QK_RBT , KC_WH_D, SCL_DRG   , KC_BTN1, KC_WH_U,    KC_WH_D, DPI_RMOD, DPI_MOD, S_D_RMOD, S_D_MOD,
 SNIPING, KC_LALT, KC_LGUI   , KC_LSFT, KC_LCTL,    KC_WH_U, KC_BTN1 , KC_BTN3, KC_BTN2 , KC_BTN6,
