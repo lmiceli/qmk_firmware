@@ -25,7 +25,7 @@
 #define SPLIT_USB_DETECT
 //#define NO_USB_STARTUP_CHECK
 
-#define SPLIT_USB_TIMEOUT 10000
+#define SPLIT_USB_TIMEOUT 5000
 
 // trying many ways to get the keyboard to wake after mac sleep
 //#undef SPLIT_USB_DETECT
