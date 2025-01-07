@@ -60,7 +60,6 @@
 #define CHARYBDIS_DEFAULT_DPI_CONFIG_STEP 400
 #define CHARYBDIS_MINIMUM_SNIPING_DPI 200
 #define CHARYBDIS_SNIPING_DPI_CONFIG_STEP 100
-
 // Set the mouse settings to a comfortable speed/accuracy trade-off,
 // assuming a screen refresh rate of 60 Htz or higher
 // The default is 50. This makes the mouse ~3 times faster and more accurate
