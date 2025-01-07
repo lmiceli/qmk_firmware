@@ -57,6 +57,7 @@ enum custom_keycodes { // Make sure have the awesome keycode ready
     LT_NUMBER_BSPC  = LT(_NUMBER, KC_BSPC),
     LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
     LT_MOUSE_H      = LT(_MOUSE, KC_H),
+    LT_MOUSE_SLSH   = LT(_MOUSE, KC_SLSH),
     LT_NAV_A        = LT(_NAVIGATION, KC_A),
 };
 
@@ -177,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_charybdis_3x5(
 LCTL_T(KC_Q), KC_W         , KC_F        , KC_P        , KC_B,          KC_J          , KC_L        , KC_U        , KC_Y        , LCTL_T(LALT(KC_BSPC)),
 KC_A        , LALT_T(KC_R) , LGUI_T(KC_S), LSFT_T(KC_T), KC_G,          KC_M          , LSFT_T(KC_N), LGUI_T(KC_E), LALT_T(KC_I), LT_FUNCTION_O        ,
-KC_Z        , KC_X         , KC_C        , KC_D        , KC_V,          KC_K          , LT_MOUSE_H  , KC_COMM     , KC_DOT      , KC_SLSH              ,
+KC_Z        , KC_X         , KC_C        , KC_D        , KC_V,          KC_K          , LT_MOUSE_H  , KC_COMM     , KC_DOT      , LT_MOUSE_SLSH        ,
                       LT_NAV_ESC , LT_ARROW_SPC, LT_MOUSE_TAB,          LT_NUMBER_BSPC, LT_SYMBOL_ENT
 ),
     /* DESKTOP NAVIGATION LAYER */
@@ -193,10 +194,10 @@ SNIPING         , KC_LALT, KC_LGUI, KC_LSFT, ALT_TAB      ,     KC_F11    , KC_L
 A(G(KC_LEFT))   , _______, _______, SCL_DRG, A(G(KC_RGHT)),     G(KC_PGUP), KC_F7  , KC_F8  , KC_F9  , G(KC_PGDN),
                            _______, _______, _______      ,     KC_DEL    , KC_BSPC
 ),
-    [_MOUSE] = LAYOUT_charybdis_3x5(
+    [_MOUSE] = LAYOUT_charybdis_3x5(                                                            /*MOUSE*/
 QK_RBT , KC_WH_D, SCL_DRG   , KC_BTN1, KC_WH_U,    KC_WH_D, DPI_RMOD, DPI_MOD, S_D_RMOD, S_D_MOD,
 SNIPING, KC_LALT, KC_LGUI   , KC_LSFT, KC_LCTL,    KC_WH_U, KC_BTN1 , KC_BTN3, KC_BTN2 , KC_BTN6,
-QK_BOOT, K_DPI  , K_DPI_SNIP, KC_BTN3, _______,    KC_BTN7, KC_BTN4 , KC_BTN5, KC_BTN8 , _______,
+QK_BOOT, K_DPI  , K_DPI_SNIP, KC_BTN3, _______,    SCL_DRG, KC_BTN1 , KC_BTN3, KC_BTN2 , _______,
                   KC_BTN2   , KC_BTN1, _______,    KC_WH_L, KC_WH_R
 ),
     [_SYMBOL] = LAYOUT_charybdis_3x5(
