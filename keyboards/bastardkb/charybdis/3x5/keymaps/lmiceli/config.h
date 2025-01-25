@@ -38,7 +38,7 @@
 // additional for home row mods
 #define TAPPING_TERM 170
 
-//#define QUICK_TAP_TERM 0
+#define QUICK_TAP_TERM 0
 
 #ifdef POINTING_DEVICE_ENABLE
 // Automatically enable the pointer layer when moving the trackball.  See also:
