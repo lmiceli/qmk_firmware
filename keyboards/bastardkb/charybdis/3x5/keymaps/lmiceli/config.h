@@ -36,7 +36,7 @@
 #define TAPPING_FORCE_HOLD
 
 // additional for home row mods
-#define TAPPING_TERM 170
+#define TAPPING_TERM 200
 
 #define QUICK_TAP_TERM 0
 

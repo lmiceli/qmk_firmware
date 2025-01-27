@@ -176,7 +176,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_BASE] = LAYOUT_charybdis_3x5(
-LCTL_T(KC_Q), KC_W         , KC_F        , KC_P        , KC_B,          KC_J          , KC_L        , KC_U        , KC_Y        , LCTL_T(LALT(KC_BSPC)),
+LCTL_T(KC_Q), KC_W         , KC_F        , KC_P        , KC_B,          KC_J          , KC_L        , KC_U        , KC_Y        , LCTL_T(KC_BSPC)      ,
 KC_A        , LALT_T(KC_R) , LGUI_T(KC_S), LSFT_T(KC_T), KC_G,          KC_M          , LSFT_T(KC_N), LGUI_T(KC_E), LALT_T(KC_I), LT_FUNCTION_O        ,
 KC_Z        , KC_X         , KC_C        , KC_D        , KC_V,          KC_K          , LT_MOUSE_H  , KC_COMM     , KC_DOT      , LT_MOUSE_SLSH        ,
                       LT_NAV_ESC , LT_ARROW_SPC, LT_MOUSE_TAB,          LT_NUMBER_BSPC, LT_SYMBOL_ENT
