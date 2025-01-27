@@ -229,6 +229,16 @@ KC_Z        , KC_X         , KC_C        , KC_D        , KC_V,          KC_K    
 
 };
 
+// not working?
+//const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
+const char LAYOUT_charybdis_3x5[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
+    'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R',
+    'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R',
+    'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R',
+    'L', 'L', 'L', 'R', 'R'
+);
+
+
 // AUTO MOUSE LAYER (disabled in config.h atm)
 // copied from via keymap (not sure what I am doing)
 

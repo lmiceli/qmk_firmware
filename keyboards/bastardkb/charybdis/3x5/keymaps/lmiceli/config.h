@@ -34,9 +34,11 @@
 // mod tap
 #define PERMISSIVE_HOLD
 #define TAPPING_FORCE_HOLD
+#define CHORDAL_HOLD
+
 
 // additional for home row mods
-#define TAPPING_TERM 170
+#define TAPPING_TERM 250
 
 #define QUICK_TAP_TERM 0
 
