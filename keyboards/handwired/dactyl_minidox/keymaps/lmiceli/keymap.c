@@ -23,7 +23,6 @@ enum layers {
     _SYMBOL,
     _NUMBER,
     _FUNCTION,
-    _LAYER_MOUSE,/*auto for trackball*/
 };
 
 /*  */
