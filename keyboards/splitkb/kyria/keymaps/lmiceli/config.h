@@ -24,7 +24,8 @@
 #define DEBOUNCE 5
 
 //#define EE_HANDS
-#define MASTER_RIGHT
+//#define MASTER_RIGHT
+#define MASTER_LEFT
 
 // Set the mouse settings to a comfortable speed/accuracy trade-off,
 // assuming a screen refresh rate of 60 Htz or higher
