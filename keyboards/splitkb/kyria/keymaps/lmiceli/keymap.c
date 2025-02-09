@@ -4,6 +4,8 @@
 
 // qmk flash -kb splitkb/kyria/rev1 -km lmiceli -bl avrdude
 
+// NO FUNCIONA? tuve q flashear la rama mayo 22. asumo algun update de qmk me rompio todo
+
 enum layers {
     _COLEMAK = 0,
     _NAVIGATION,
