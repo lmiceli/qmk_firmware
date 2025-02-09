@@ -15,7 +15,7 @@ enum layers {
     _GAME
 };
 
-// START METHODS 
+// START METHODS
 
 
 /*  */
@@ -31,6 +31,10 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
     LT_NUMBER_SPC   = LT(_NUMBER, KC_SPC),
     LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
     LT_MOUSE_H      = LT(_MOUSE, KC_H),
+
+    LT_ARROW_SPC    = LT(_ARROW, KC_SPC),
+    LT_NUMBER_BSPC  = LT(_NUMBER, KC_BSPC),
+
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -66,48 +70,49 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       unregister_code(KC_LALT);
       is_alt_tab_active = false;
   }
+// todo: something broke at some point, commenting leds code just in case
 
-  onBaseLayerColor = false;
-  switch(biton32(state)) {
-  case _GAME:
-    // green-ish
-    rgblight_sethsv_noeeprom(72, 255, RBG_VAL);
-    break;
-  case _ARROW:
-    // blu
-    rgblight_sethsv_noeeprom(150, 255, RBG_VAL);
-    break;
-  case _MOUSE:
-    rgblight_sethsv_noeeprom(80, 255, RBG_VAL);
-    break;
-  case _SYMBOL:
-    rgblight_sethsv_noeeprom(10, 5, RBG_VAL);
-    break;
-  case _NUMBER:
-    rgblight_sethsv_noeeprom(30, 255, RBG_VAL);
-    break;
-  default:
-    // Default colors
-    rgblight_sethsv(222, 255, RBG_VAL_LOW);
-	onBaseLayerColor = true;
-    break;
-  }
+//  onBaseLayerColor = false;
+//  switch(biton32(state)) {
+//  case _GAME:
+//    // green-ish
+//    rgblight_sethsv_noeeprom(72, 255, RBG_VAL);
+//    break;
+//  case _ARROW:
+//    // blu
+//    rgblight_sethsv_noeeprom(150, 255, RBG_VAL);
+//    break;
+//  case _MOUSE:
+//    rgblight_sethsv_noeeprom(80, 255, RBG_VAL);
+//    break;
+//  case _SYMBOL:
+//    rgblight_sethsv_noeeprom(10, 5, RBG_VAL);
+//    break;
+//  case _NUMBER:
+//    rgblight_sethsv_noeeprom(30, 255, RBG_VAL);
+//    break;
+//  default:
+//    // Default colors
+//    rgblight_sethsv(222, 255, RBG_VAL_LOW);
+//	onBaseLayerColor = true;
+//    break;
+//  }
   return state;
 }
 
 // Handle Caps lock led
-
-void led_set_user(uint8_t usb_led) {
-  if (onBaseLayerColor){
-    if (usb_led & (1<<USB_LED_CAPS_LOCK)) {
-        rgblight_sethsv_noeeprom(15, 255, RBG_VAL);
-    }
-    else {
-        // Default colors
-        rgblight_sethsv(190, 255, RBG_VAL_LOW);
-    }
-  }
-}
+// todo: USB_LED_CAPS_LOCK was removed from qmk, not sure how to replace it or if i want to
+//void led_set_user(uint8_t usb_led) {
+//  if (onBaseLayerColor){
+//    if (usb_led & (1<<USB_LED_CAPS_LOCK)) {
+//        rgblight_sethsv_noeeprom(15, 255, RBG_VAL);
+//    }
+//    else {
+//        // Default colors
+//        rgblight_sethsv(190, 255, RBG_VAL_LOW);
+//    }
+//  }
+//}
 
 // END METHODS
 
@@ -115,9 +120,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT(
 
         KC_NO,LGUI_T(KC_Q), KC_W,         KC_F,         KC_P,         KC_B,                         /**/ KC_J,  KC_L,         KC_U,         KC_Y,         LGUI_T(KC_QUOT),  KC_NO,
-        KC_NO,KC_A,         LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), KC_G,                         /**/ KC_M,  LSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), KC_O,             KC_NO,
-        KC_NO,KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,   KC_NO, KC_NO,         /**/ TG(7), KC_NO, KC_K,  LT_MOUSE_H,   KC_COMM,      KC_DOT,       KC_SLSH,KC_NO,
-              TG(7), KC_LGUI, LT_NAV_ESC,  LT_ARROW_BSPC, LT_MOUSE_TAB,                             /**/ LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT, KC_LGUI, KC_LGUI
+        KC_NO,KC_A,         LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), KC_G,           /**/ KC_M,  LSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), KC_O,             KC_NO,
+        KC_NO,KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,   KC_NO, KC_NO,   /**/ TG(7), KC_NO, KC_K,  LT_MOUSE_H,   KC_COMM,      KC_DOT,       KC_SLSH,KC_NO,
+              TG(7), KC_LGUI, LT_NAV_ESC,  LT_ARROW_SPC, LT_MOUSE_TAB,              /**/ LT_NUMBER_BSPC,  LT_SYMBOL_ENT, LT_FUNCTION_DEL, KC_LGUI, KC_LGUI
 ),
 // rgb
 // https://github.com/qmk/qmk_firmware/blob/master/docs/feature_rgblight.md
