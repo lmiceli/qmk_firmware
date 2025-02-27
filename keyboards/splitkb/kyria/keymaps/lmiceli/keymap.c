@@ -15,7 +15,7 @@ enum layers {
     _GAME
 };
 
-// START METHODS 
+// START METHODS
 
 
 /*  */
@@ -26,9 +26,11 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
     ALT_TAB         = SAFE_RANGE,
     LT_NAV_ESC      = LT(_NAVIGATION, KC_ESC),
     LT_ARROW_BSPC   = LT(_ARROW, KC_BSPC),
+    LT_ARROW_SPC   = LT(_ARROW, KC_SPC),
     LT_MOUSE_TAB    = LT(_MOUSE, KC_TAB),
     LT_FUNCTION_DEL = LT(_FUNCTION, KC_DEL),
     LT_NUMBER_SPC   = LT(_NUMBER, KC_SPC),
+    LT_NUMBER_BSPC   = LT(_NUMBER, KC_BSPC),
     LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
     LT_MOUSE_H      = LT(_MOUSE, KC_H),
 };
@@ -117,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,LGUI_T(KC_Q), KC_W,         KC_F,         KC_P,         KC_B,                         /**/ KC_J,  KC_L,         KC_U,         KC_Y,         LGUI_T(KC_QUOT),  KC_NO,
         KC_NO,KC_A,         LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), KC_G,                         /**/ KC_M,  LSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), KC_O,             KC_NO,
         KC_NO,KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,   KC_NO, KC_NO,         /**/ TG(7), KC_NO, KC_K,  LT_MOUSE_H,   KC_COMM,      KC_DOT,       KC_SLSH,KC_NO,
-              TG(7), KC_LGUI, LT_NAV_ESC,  LT_ARROW_BSPC, LT_MOUSE_TAB,                             /**/ LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT, KC_LGUI, KC_LGUI
+              TG(7), KC_LGUI, LT_NAV_ESC,  LT_ARROW_SPC, LT_MOUSE_TAB,                             /**/ LT_NUMBER_BSPC, LT_SYMBOL_ENT, LT_FUNCTION_DEL, KC_LGUI, KC_LGUI
 ),
 // rgb
 // https://github.com/qmk/qmk_firmware/blob/master/docs/feature_rgblight.md
