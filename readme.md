@@ -1,3 +1,10 @@
+Run for each half:
+
+qmk flash -kb splitkb/kyria/rev1 -km default -bl avrdude
+
+then double tap the reset button
+
+
 # Quantum Mechanical Keyboard Firmware
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
