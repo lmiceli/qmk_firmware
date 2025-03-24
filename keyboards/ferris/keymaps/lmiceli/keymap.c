@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
 
-/* $ 
+/* $
 qmk flash -kb ferris/sweep -km lmiceli
 */
 
@@ -18,6 +18,14 @@ enum layers {
 bool is_alt_tab_active = false;
 enum custom_keycodes {          // Make sure have the awesome keycode ready
 ALT_TAB         = SAFE_RANGE,
+WD_01       ,
+WD_02       ,
+WD_03       ,
+WD_04       ,
+WD_05       ,
+WD_06       ,
+WD_07       ,
+WD_08       ,
 LT_NAV_ESC      = LT(_NAVIGATION, KC_ESC),
 LT_ARROW_BSPC   = LT(_ARROW, KC_BSPC),
 LT_MOUSE_TAB    = LT(_MOUSE, KC_TAB),
@@ -25,8 +33,9 @@ LT_FUNCTION_DEL = LT(_FUNCTION, KC_DEL),
 LT_NUMBER_SPC   = LT(_NUMBER, KC_SPC),
 LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
 LT_MOUSE_H      = LT(_MOUSE, KC_H),
-};
 
+
+};
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     if (is_alt_tab_active) {
@@ -37,7 +46,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode){
+    switch (keycode) {
         case ALT_TAB: // super alt tab macro
             if (record->event.pressed) {
                 if (!is_alt_tab_active) {
@@ -49,9 +58,49 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_TAB);
             }
             break;
-        return false;
-     }
-  return true;
+
+        case WD_01:
+            if (record->event.pressed) {
+                SEND_STRING("redacted13");
+            } else { /* when keycode QMKBEST is released */ }
+            break;
+
+        case WD_02:
+            if (record->event.pressed) {
+                SEND_STRING("redacted5656%"); // ˆ no funca
+            } else { /* when keycode QMKBEST is released */ }
+            break;
+        case WD_03:
+            if (record->event.pressed) {
+                SEND_STRING("redacted4545$%$%");
+            } else { /* when keycode QMKBEST is released */ }
+            break;
+
+        case WD_04:
+            if (record->event.pressed) {
+                SEND_STRING("redacted!BS_1923");
+            } else { /* when keycode QMKBEST is released */ }
+            break;
+
+        case WD_05:
+            if (record->event.pressed) {
+                SEND_STRING("45455656");
+            } else { /* when keycode QMKBEST is released */ }
+            break;
+
+        case WD_06:
+            if (record->event.pressed) {
+                SEND_STRING("5656");
+            } else { /* when keycode QMKBEST is released */ }
+            break;
+
+        case WD_07:
+            if (record->event.pressed) {
+                SEND_STRING("A9hq7sHe");
+            } else { /* when keycode QMKBEST is released */ }
+            break;
+    }
+    return true;
 }
 
 /* ALT TAB END */
@@ -111,28 +160,28 @@ QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO, /**/ KC_NO, KC_WH_L, KC_BTN1,   KC_WH
 
 /* SYMBOL */
 [4] = LAYOUT(
-    
-KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, /**/   KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO, 
-KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS, /**/   KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO, 
-KC_TILD, KC_EXLM, KC_AT,  KC_HASH,  KC_PIPE, /**/   KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO, 
+
+KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, /**/   KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS, /**/   KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
+KC_TILD, KC_EXLM, KC_AT,  KC_HASH,  KC_PIPE, /**/   KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
                         /* ) */  /* _  */
                         KC_RPRN, KC_UNDS,    /**/   KC_NO, KC_NO),
 
 /* NUMBER */ [5] = LAYOUT(
-    
+
 KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC,   /**/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
-KC_SCLN, KC_4, KC_5, KC_6, KC_EQL,    /**/ KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO, 
+KC_SCLN, KC_4, KC_5, KC_6, KC_EQL,    /**/ KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
 KC_GRV,  KC_1, KC_2, KC_3, KC_BSLS,   /**/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
 
                     KC_0, KC_MINS,    /**/ KC_NO, KC_NO
 
 ),/* FUNCTION */[6] = LAYOUT(
 
-        KC_F12, KC_F7, KC_F8, KC_F9, KC_NO,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        KC_F11, KC_F4, KC_F5, KC_F6, KC_NO,     KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO, 
-        KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-                         KC_ESC, KC_BSPC,           KC_SPC, KC_ENT
-                         
+        KC_F12, KC_F7, KC_F8, KC_F9, KC_NO,     KC_NO, WD_01,   WD_02,   WD_03,   KC_NO,
+        KC_F11, KC_F4, KC_F5, KC_F6, KC_NO,     KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_NO,
+        KC_F10, KC_F1, KC_F2, KC_F3, KC_TAB,    KC_NO, WD_04,   WD_05,   WD_06,   WD_07,
+                            KC_ESC, KC_BSPC,    KC_SPC, KC_ENT
+
 )};
 
 
