@@ -13,7 +13,6 @@ enum skeletyl_tap_dances {
     TD_TAB_MOUSE
 };
 
-
 enum layers {
     _COLEMAK = 0,
     _NAVIGATION,
@@ -100,7 +99,7 @@ KC_LGUI,       KC_BTN3,    KC_BTN2,    KC_BTN1,    KC_NO,         /**/ KC_PGUP, 
                                                                     /*LCA(KC_LEFT)*/                            /*LCA(KC_RGHT)*/
 LALT(KC_LEFT), KC_LALT,    KC_LCTL,    KC_LSFT,    LALT(KC_RGHT), /**/ LCTL(KC_PGUP), KC_LEFT, KC_DOWN, KC_RGHT, LCTL(KC_PGDN),
 
-LCTL(KC_Z),    LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO,         /**/ KC_CAPS,  KC_F11, KC_F7,   KC_F8,   KC_F9,   
+LCTL(KC_Z),    LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO,         /**/ KC_CAPS,  KC_F11, KC_F7,   KC_F8,   KC_F9,
 
                                        ALT_TAB,  KC_NO,   KC_NO,  /**/ KC_PGUP, ALT_TAB, KC_PGDN
 
@@ -151,7 +150,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Q, twice for ESC
     //[TD_Q_GUI] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_LGUI)
     [TD_G_CAPS] =  ACTION_TAP_DANCE_DOUBLE(KC_G, KC_CAPS),
-    [TD_TAB_MOUSE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_M, 3)    
+    [TD_TAB_MOUSE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_M, 3)
 };
 
 
