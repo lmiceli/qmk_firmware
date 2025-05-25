@@ -3,8 +3,16 @@
 /*
  * (compila pero aun no lo flashe)
    qmk flash -kb handwired/dactyl_minidox -km lmiceli
- *
+ *z
 // ordenar esto pero q no te olvides
+ // no funciona ninguno, creo q lo le daba a algun pinf
+ // mirando aca ahora
+ https://www.dlford.io/keyboard-build-guide-per-key-rgb-leds/
+
+ parece q lo consegui, era con las pinzitas, apenas se ve asi q espero q no me vuelva a desprogramar el boton reset
+
+
+
 ## Bootloader
 
 Enter the bootloader in 3 ways:
