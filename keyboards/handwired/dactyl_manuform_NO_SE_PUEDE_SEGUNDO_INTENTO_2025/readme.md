@@ -29,7 +29,7 @@ For more information on customizing keymaps, take a look at the primary document
 
 ## Keymaps
 
-### [Keymaps 4x5](/keyboards/handwired/dactyl_manuform/4x5/keymaps/)
+### [Keymaps 4x5](/keyboards/handwired/dactyl_manuform_NO_SE_PUEDE_SEGUNDO_INTENTO_2025/4x5/keymaps/)
 
 #### Default
 
@@ -37,7 +37,7 @@ Simple QWERTY layout with 3 Layers.
 
 #### Dvorak
 
-### [Keymaps 5x6](/keyboards/handwired/dactyl_manuform/5x6/keymaps/)
+### [Keymaps 5x6](/keyboards/handwired/dactyl_manuform_NO_SE_PUEDE_SEGUNDO_INTENTO_2025/5x6/keymaps/)
 
 #### Default
 
@@ -47,7 +47,7 @@ Just a copy of the Impstyle keymap. Feel free to adjust it.
 
 A simple QWERTY keymap with 3 Layers. Both sides are connected via serial and the Left ist the master.
 
-### [Keymaps 5x6_5](/keyboards/handwired/dactyl_manuform/5x6_5/keymaps/)
+### [Keymaps 5x6_5](/keyboards/handwired/dactyl_manuform_NO_SE_PUEDE_SEGUNDO_INTENTO_2025/5x6_5/keymaps/)
 
 Similar layout to 5x6 but with only 5 thumb keys per side instead of 6.
 
@@ -58,25 +58,25 @@ QWERTY layout with 7 Layers.
 Similar to Default but adds support for the [Via](https://www.caniusevia.com/) keymap configurator. Reduces the number of layers to 4 to comply with Via defaults, and remaps
 some keys to accomodate that constraint.
 
-### [Keymaps 5x7 aka almost Ergodox](/keyboards/handwired/dactyl_manuform/5x7/keymaps/)
+### [Keymaps 5x7 aka almost Ergodox](/keyboards/handwired/dactyl_manuform_NO_SE_PUEDE_SEGUNDO_INTENTO_2025/5x7/keymaps/)
 
 #### Default
 
 Keymap of Loligagger from geekhack.
 
-### [Keymaps 6x6](/keyboards/handwired/dactyl_manuform/6x6/keymaps/)
+### [Keymaps 6x6](/keyboards/handwired/dactyl_manuform_NO_SE_PUEDE_SEGUNDO_INTENTO_2025/6x6/keymaps/)
 
 #### Default
 
 Simple QWERTY layout with 3 Layers.
 
-### [Keymaps 6x7](/keyboards/handwired/dactyl_manuform/6x7/keymaps/)
+### [Keymaps 6x7](/keyboards/handwired/dactyl_manuform_NO_SE_PUEDE_SEGUNDO_INTENTO_2025/6x7/keymaps/)
 
 #### Default
 
 Simple QWERTY layout with 3 Layers.
 
-### [Keymaps 3x5_3](/keyboards/handwired/dactyl_manuform/3x5_3/keymaps/)
+### [Keymaps 3x5_3](/keyboards/handwired/dactyl_manuform_NO_SE_PUEDE_SEGUNDO_INTENTO_2025/3x5_3/keymaps/)
 
 #### Dlford
 
