@@ -4,7 +4,7 @@
  *
  make handwired/dactyl_minidox:lmiceli:flash
 
- qmk flash -kb handwired/dactyl_minidox -km lmiceli
+
  *
  * // this is only for the first time of setting ee hands?
  *
@@ -13,7 +13,7 @@
 */
 
 /*  */
-
+parece q en esta rama no lo hice funcionar nunca? voy a mirar de nuevo en la de 2022
 /* new for sync most of my existing keymaps */
 enum layers {
     _COLEMAK = 0,

@@ -1,8 +1,8 @@
 {
-    "keyboard_name": "Dactyl Minidox",
-    "manufacturer": "dlford",
+    "keyboard_name": "Skeletyl",
+    "manufacturer": "elpacho",
     "url": "https://www.dlford.io/keyboard-build-guide-per-key-rgb-leds/",
-    "maintainer": "dlford",
+    "maintainer": "elpacho",
     "usb": {
         "vid": "0x444D",
         "pid": "0x3536",
