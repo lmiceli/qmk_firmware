@@ -19,9 +19,9 @@
 // #define USE_SERIAL_PD2
 
 /* Select hand configuration */
-#define MASTER_LEFT
+//#define MASTER_LEFT
 //#define MASTER_RIGHT
-//#define EE_HANDS
+#define EE_HANDS
 
 // Set the mouse settings to a comfortable speed/accuracy trade-off,
 // assuming a screen refresh rate of 60 Htz or higher

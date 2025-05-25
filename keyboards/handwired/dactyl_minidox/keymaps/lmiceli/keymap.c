@@ -27,8 +27,47 @@ Enter the bootloader in 3 ways:
 
 estos no van, alguna historia se habra desactualizado, voy a probar con left master en config.h
 
+ make bastardkb/charybdis/3x5/v1/elitec:lmiceli:flash
+
+
+ qmk flash -kb handwired/dactyl_minidox -km lmiceli -bl :dfu-split-left
+ make handwired/dactyl_minidox:lmiceli:avrdude-split-left
+ qmk flash -kb  -km  -bl :
+
+
    qmk flash -kb handwired/dactyl_minidox -km lmiceli -bl :avrdude-split-left
    qmk flash -kb handwired/dactyl_minidox -km lmiceli -bl :avrdude-split-right
+
+
+
+
+
+   vale finalmente es:
+
+ regularmente:
+ qmk flash -kb handwired/dactyl_minidox -km lmiceli
+ en el lado q sea (nentiendo q si no lo hago en los dos uno se me queda desactualizado
+
+ para programar el handednes se hace una vez asi:
+
+ make handwired/dactyl_minidox:lmiceli:avrdude-split-left
+ make handwired/dactyl_minidox:lmiceli:avrdude-split-right
+
+ AHORA TEGO ROTO el derecho CREO Q ES POR TENER EL MICRO AL REVES O ALGO ASI
+ LUEGO LO REVISO,
+ LIMOPIO ESTE DOC Y YA LO DEJO TODO GUAY
+
+ EL TEXTO DEL FERRIS TMABIEN HAY Q CAMBIARLO
+
+ ah el boot en la dereha es m presed then k (por eso de q esta al reves sino seria o y slash
+
+
+
+
+
+
+
+
 */
 /*  */
 
