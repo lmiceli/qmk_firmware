@@ -1,12 +1,23 @@
 #include QMK_KEYBOARD_H
 
 /*
+ * (compila pero aun no lo flashe)
+   qmk flash -kb handwired/dactyl_minidox -km lmiceli
+ *
+// ordenar esto pero q no te olvides
+## Bootloader
+
+Enter the bootloader in 3 ways:
+
+    * **Bootmagic reset**: Hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard
+    * **Physical reset button**: Briefly press the button on the back of the PCB - some may have pads you must short instead
+  * **Keycode in layout**: Press the key mapped to `QK_BOOT` if it is available
  *
  *
  * NO PROBADOS NINGUNO
  *
-   qmk flash -kb handwired/dactyl_minidox
-   qmk flash -kb handwired/dactyl_minidox -km lmiceli
+
+estos no van, alguna historia se habra desactualizado, voy a probar con left master en config.h
 
    qmk flash -kb handwired/dactyl_minidox -km lmiceli -bl :avrdude-split-left
    qmk flash -kb handwired/dactyl_minidox -km lmiceli -bl :avrdude-split-right
