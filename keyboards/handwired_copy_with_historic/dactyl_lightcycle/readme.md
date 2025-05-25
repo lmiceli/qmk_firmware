@@ -3,7 +3,7 @@
 ![TopElev](https://i.imgur.com/MwPhTrCh.jpg)
 
 A handwired, split bodied, concave key-well, columnar keyboard.  
-The *Dactyl Lightcycle* is a variation of the [Dactyl](/keyboards/handwired/dactyl/) keyboard, its differences are:
+The *Dactyl Lightcycle* is a variation of the [Dactyl](/keyboards/handwired_copy_with_historic/dactyl/) keyboard, its differences are:
 1. Top (number) row removed
 2. Five key thumb cluster; one less than the *Dactyl's* six
 

@@ -1,20 +1,20 @@
-# Dactyl Minidox
+# Dactyl Tracer
 
-![DactylMinidox](https://i.imgur.com/PqjgeRf.jpeg)
+![DactylTracer](https://i.imgur.com/ReCBppEh.jpeg)
 
-A 36 key (3x5+3), split bodied keyboard derived from the [Dactyl ManuForm](/keyboards/handwired/dactyl_manuform/).
+The Dactyl Tracer is a handwired, split bodied, concave key-well, columnar keyboard. Case design is similar to the [Dactyl CC](/keyboards/handwired_copy_with_historic/dactyl_cc) though overall design is closer to the [Dactyl ManuForm](/keyboards/handwired_copy_with_historic/dactyl_manuform/). The `Q` and `P` keys are vertically offset, from `A` and `;` keys respectively, to allow for easier actuation by third/ring finger.
 
-* Keyboard Maintainer: [Dan Ford](https://github.com/dlford)
+* Keyboard Maintainer: [Michael Johns](https://github.com/mjohns)
 * Hardware Supported: Pro Micro controller, or clone of
-* Hardware Availability: [Build Guide](https://www.dlford.io/keyboard-build-guide-per-key-rgb-leds/)
+* Hardware Availability: [Case Files](https://github.com/mjohns/tracer)
 
 Make example for this keyboard (after setting up your build environment):
 
-    make handwired/dactyl_minidox:default
+    make handwired/dactyl_tracer:default
 
 Flashing example for this keyboard:
 
-    make handwired/dactyl_minidox:default:flash
+    make handwired/dactyl_tracer:default:flash
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 

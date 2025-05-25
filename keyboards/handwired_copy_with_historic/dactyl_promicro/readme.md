@@ -2,7 +2,7 @@
 
 ![Dactyl](https://i.imgur.com/a7uY1eSh.png)
 
-A split body, concave shaped key well, columnar keyboard with a 6 key thumb cluster that takes inspiration from the Kinesis Advantage keyboard range. This rendition of the *Dactyl* requires two micro controllers rather than the [original implementation](/keyboards/handwired/dactyl/) of a micro controller and I/O expander.
+A split body, concave shaped key well, columnar keyboard with a 6 key thumb cluster that takes inspiration from the Kinesis Advantage keyboard range. This rendition of the *Dactyl* requires two micro controllers rather than the [original implementation](/keyboards/handwired_copy_with_historic/dactyl/) of a micro controller and I/O expander.
 
 * Keyboard Maintainer: [Matt Adereth](https://github.com/adereth)
 * Hardware Supported: Pro Micro controller, or clones of
