@@ -1,75 +1,25 @@
 #include QMK_KEYBOARD_H
 
 /*
- * (compila pero aun no lo flashe)
-   qmk flash -kb handwired/dactyl_minidox -km lmiceli
- *z
-// ordenar esto pero q no te olvides
- // no funciona ninguno, creo q lo le daba a algun pinf
- // mirando aca ahora
- https://www.dlford.io/keyboard-build-guide-per-key-rgb-leds/
 
- parece q lo consegui, era con las pinzitas, apenas se ve asi q espero q no me vuelva a desprogramar el boton reset
-
-
-
-## Bootloader
-
-Enter the bootloader in 3 ways:
-
-    * **Bootmagic reset**: Hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard
-    * **Physical reset button**: Briefly press the button on the back of the PCB - some may have pads you must short instead
-  * **Keycode in layout**: Press the key mapped to `QK_BOOT` if it is available
- *
- *
- * NO PROBADOS NINGUNO
- *
-
-estos no van, alguna historia se habra desactualizado, voy a probar con left master en config.h
-
- make bastardkb/charybdis/3x5/v1/elitec:lmiceli:flash
-
-
- qmk flash -kb handwired/dactyl_minidox -km lmiceli -bl :dfu-split-left
- make handwired/dactyl_minidox:lmiceli:avrdude-split-left
- qmk flash -kb  -km  -bl :
-
-
-   qmk flash -kb handwired/dactyl_minidox -km lmiceli -bl :avrdude-split-left
-   qmk flash -kb handwired/dactyl_minidox -km lmiceli -bl :avrdude-split-right
-
-
-
-
-
-   vale finalmente es:
-
- regularmente:
  qmk flash -kb handwired/dactyl_minidox -km lmiceli
- en el lado q sea (nentiendo q si no lo hago en los dos uno se me queda desactualizado
+ en el lado q sea (entiendo q si no lo hago en los dos uno se me queda desactualizado
 
  para programar el handednes se hace una vez asi:
 
  make handwired/dactyl_minidox:lmiceli:avrdude-split-left
  make handwired/dactyl_minidox:lmiceli:avrdude-split-right
 
- AHORA TEGO ROTO el derecho CREO Q ES POR TENER EL MICRO AL REVES O ALGO ASI
- LUEGO LO REVISO,
- LIMOPIO ESTE DOC Y YA LO DEJO TODO GUAY
 
- EL TEXTO DEL FERRIS TMABIEN HAY Q CAMBIARLO
+ reset:
+ https://www.dlford.io/keyboard-build-guide-per-key-rgb-leds/
 
- ah el boot en la dereha es m presed then k (por eso de q esta al reves sino seria o y slash
-
-
-
-
-
-
+con las pinzitas, apenas se ve asi q espero q no me vuelva a desprogramar
+el qmk_boot
 
 
 */
-/*  */
+
 
 /* new for sync most of my existing keymaps */
 enum layers {
@@ -136,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
         KC_Z,         KC_X,         KC_C,         KC_D,         KC_V,          KC_K,         LT_MOUSE_H,   KC_COMM,      KC_DOT,       KC_SLSH,
         // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-        LT_NAV_ESC,   LT_ARROW_SP,  LT_MOUSE_TAB,    LT_NUMBER_BSP, LT_SYMBOL_ENT, KC_LCTL
+                                         LT_NAV_ESC,   LT_ARROW_SP,  LT_MOUSE_TAB,    LT_NUMBER_BSP, LT_SYMBOL_ENT, KC_LCTL
         //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
         //                         LT_NAV_ESC,   LT_ARROW_BSPC    /**/  LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
         ),
@@ -199,3 +149,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_F10, KC_F1, KC_F2, KC_F3,  KC_TAB,      _______, _______, _______, _______, QK_BOOT,
             KC_ESC, KC_SPC, KC_TAB,      KC_BSPC, KC_ENT, KC_LCTL)
 };
+/*
+ * test area
+ *
+ *
+ * uullljjjjjlumneiooooo
+ *
+ *
+ * */
