@@ -73,7 +73,6 @@
     "community_layouts": ["split_3x5_3"],
     "layouts": {
         "LAYOUT_split_3x5_3": {
-            "_comment": "Right half columns reversed due to soldering wiring order fix. For rows >= 4, column c is remapped to 4 - c to reflect actual physical wiring. This matches legacy .h macro changes for the right side, avoiding key order mismatch.",
             "layout": [
                 {"matrix": [0, 0], "x": 0, "y": 0},
                 {"matrix": [0, 1], "x": 1, "y": 0},

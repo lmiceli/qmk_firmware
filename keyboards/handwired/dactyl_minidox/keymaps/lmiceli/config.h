@@ -4,6 +4,11 @@
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
 
+// about keyboard.json changes
+// Right half columns reversed due to soldering wiring order fix.
+// For rows >= 4, column c is remapped to 4 - c to reflect actual physical wiring.
+// This matches legacy .h macro changes for the right side, avoiding key order mismatch.
+
 /* Serial settings */
 //#define USE_SERIAL
 /* serial.c configuration for split keyboard */
