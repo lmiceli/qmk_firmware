@@ -49,6 +49,9 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
     LT_MOUSE_H      = LT(_MOUSE, KC_H),
     LT_FUNCTION_O   = LT(_FUNCTION, KC_O),
 
+    // for use in symbol layer to access numbers
+    LT_NUMBER_QUES   = LT(_NUMBER, KC_QUES),
+
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -148,23 +151,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         ),
 
+    // try? LSFT_T(KC_?), LGUI_T(KC_?), LALT_T(KC_?),  LCTL_T(KC_?)
     [_SYMBOL] =
         LAYOUT_split_3x5_3(
             KC_QUOT, KC_LT  , KC_GT  , KC_DQT , KC_DOT ,    KC_AMPR, KC_LBRC, KC_RBRC, KC_SCLN, KC_PERC,
-            KC_EXLM, KC_MINS, KC_PLUS, KC_EQL , KC_HASH,    KC_PIPE, KC_LPRN, KC_RPRN, KC_COLN, KC_QUES,
+            KC_EXLM, KC_MINS, KC_PLUS, KC_EQL , KC_HASH,    KC_PIPE, KC_LPRN, KC_RPRN, KC_COLN, LT_NUMBER_QUES,
             KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, KC_GRV ,    KC_TILD, KC_LCBR, KC_RCBR, KC_DLR , KC_AT,
 
-            KC_BSPC, KC_UNDS, KC_LGUI,    KC_LSFT, _______, KC_LCTL
+                              KC_BSPC, KC_UNDS, KC_LGUI,    KC_LSFT, _______, KC_LCTL
 
             ),
-
+// missing : , .
     /* number LAYER */
     [_NUMBER] =
         LAYOUT_split_3x5_3(
             _______, KC_7, KC_8, KC_9, _______,    _______, _______, _______, _______, KC_LCTL,
-            KC_0   , KC_4, KC_5, KC_6, _______,    _______, KC_LSFT, KC_LGUI, KC_LALT, _______,
+            KC_0   , KC_4, KC_5, KC_6, KC_COLN,    _______, KC_LSFT, KC_LGUI, KC_LALT, _______,
             _______, KC_1, KC_2, KC_3, _______,    _______, _______, _______, _______, _______,
-            KC_BSPC, KC_SPC, KC_DEL,    _______, _______, KC_NO
+                       KC_BSPC, KC_SPC, KC_DEL,    _______, _______, KC_NO
 
             ),
 
