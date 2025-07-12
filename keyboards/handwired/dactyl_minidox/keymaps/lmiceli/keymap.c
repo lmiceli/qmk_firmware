@@ -35,8 +35,8 @@ enum layers {
 /*  */
 /* ALT TAB */
 bool is_alt_tab_active = false;
-#define MOUSE_TIMEOUT 10000  // 10 seconds in milliseconds
-uint32_t mouse_timer = 0;
+//#define MOUSE_TIMEOUT 10000  // 10 seconds in milliseconds
+//uint32_t mouse_timer = 0;
 
 enum custom_keycodes {          // Make sure have the awesome keycode ready
     ALT_TAB         = SAFE_RANGE,
@@ -62,6 +62,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
+// todo: fix toggle mouse layer automatically after 10 seconds of inactivity
+//  no rush i may not even like it
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode){
         case ALT_TAB: // super alt tab macro
@@ -82,30 +84,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 /* ALT TAB END */
 
+// todo: fix toggle mouse layer automatically after 10 seconds of inactivity
+//  no rush i may not even like it
 // Modify layer_state_set_user
-layer_state_t layer_state_set_user(layer_state_t state) {
-    // Handle alt-tab
-    if (is_alt_tab_active) {
-        unregister_code(KC_LALT);
-        is_alt_tab_active = false;
-    }
-
-    // Handle mouse layer timeout
-    if (IS_LAYER_ON_STATE(state, _MOUSE)) {
-        if (mouse_timer == 0) {
-            mouse_timer = timer_read32();
-        } else if (timer_elapsed32(mouse_timer) > MOUSE_TIMEOUT) {
-            state = layer_state_set(state & ~(1UL << _MOUSE));
-            mouse_timer = 0;
-        }
-    } else {
-        mouse_timer = 0;
-    }
-
-    return state;
-}
-
-
+//layer_state_t layer_state_set_user(layer_state_t state) {
+//    // Handle alt-tab
+//    if (is_alt_tab_active) {
+//        unregister_code(KC_LALT);
+//        is_alt_tab_active = false;
+//    }
+//
+//    // Handle mouse layer timeout
+//    if (IS_LAYER_ON_STATE(state, _MOUSE)) {
+//        if (mouse_timer == 0) {
+//            mouse_timer = timer_read32();
+//        } else if (timer_elapsed32(mouse_timer) > MOUSE_TIMEOUT) {
+//            state = layer_state_set(state & ~(1UL << _MOUSE));
+//            mouse_timer = 0;
+//        }
+//    } else {
+//        mouse_timer = 0;
+//    }
+//
+//    return state;
+//}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x5_3(
@@ -126,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_BTN3      , KC_BTN2    , KC_BTN1      , _______,     LCAG(KC_1)  , LCAG(KC_2)  , LCAG(KC_3)  , LCAG(KC_4), LCAG(KC_5),
         ALT_TAB, G(C(KC_LEFT)), G(C(KC_UP)), G(C(KC_RGHT)), ALT_TAB,     G(KC_PLUS)  , C(KC_LEFT)  , C(KC_RGHT)  , KC_VOLD   , KC_VOLU   ,
         _______, _______      , _______    , ALT_TAB      , _______,     G(KC_MINS)  , RCS(KC_COMM), RCS( KC_DOT), KC_MPLY   , KC_MUTE   ,
-        KC_BTN3    , KC_BTN1      , KC_BTN2,     LAG(KC_LEFT), RCS(KC_DEL) ,LAG(KC_RGHT)
+                                KC_BTN3    , KC_BTN1      , KC_BTN2,     LAG(KC_LEFT), RCS(KC_DEL) ,LAG(KC_RGHT)
 
             ),
 
@@ -135,19 +137,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL         , KC_BTN3, KC_BTN2, KC_BTN1, _______      ,     KC_PGUP   , KC_HOME, KC_UP  , KC_END , KC_PGDN   ,
         ALT_TAB         , KC_LALT, KC_LGUI, KC_LSFT, ALT_TAB      ,     KC_F11    , KC_LEFT, KC_DOWN, KC_RGHT, KC_CAPS   ,
         A(G(KC_LEFT))   , _______, _______, ALT_TAB, A(G(KC_RGHT)),     G(KC_PGUP), KC_F7  , KC_F8  , KC_F9  , G(KC_PGDN),
-        _______, _______, _______,     KC_DEL    , KC_BSPC, KC_PGDN
+                                         _______, _______, _______,     KC_DEL    , KC_BSPC, KC_PGDN
 
         ),
 
     [_MOUSE] = LAYOUT_split_3x5_3(
 
-        KC_NO,   KC_WH_U, ALT_TAB, KC_WH_D, KC_NO, /**/ KC_NO, KC_WH_U, KC_MS_U, KC_WH_D, KC_NO,
+        KC_NO,   KC_WH_U, ALT_TAB, KC_WH_D, KC_NO, /**/ KC_NO, KC_WH_U, KC_MS_U, KC_WH_D, KC_TRNS,
 
         KC_NO,   KC_LALT, KC_LGUI, KC_LSFT, KC_NO, /**/ KC_NO, KC_MS_L, KC_MS_D, KC_MS_R, KC_NO,
 
         QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO, /**/ KC_NO, KC_WH_L, KC_BTN1,   KC_WH_R, KC_NO,
 
-        KC_TRNS, KC_BTN1,   KC_TRNS,    KC_BTN3, KC_BTN1, KC_BTN2
+                        KC_TRNS, KC_BTN1,  KC_TRNS,    KC_BTN3, KC_BTN1, KC_BTN2
 
         ),
 
@@ -178,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_F12, KC_F7, KC_F8, KC_F9, _______,      _______, _______, _______, KC_LCTL, _______,
             KC_F11, KC_F4, KC_F5, KC_F6, _______,      _______, KC_LSFT, KC_LGUI, KC_LALT, _______,
             KC_F10, KC_F1, KC_F2, KC_F3,  KC_TAB,      _______, _______, _______, _______, QK_BOOT,
-            KC_ESC, KC_SPC, KC_TAB,      KC_BSPC, KC_ENT, KC_LCTL)
+                          KC_ESC, KC_SPC, KC_TAB,      KC_BSPC, KC_ENT, KC_LCTL)
 };
 /*
  * test area
