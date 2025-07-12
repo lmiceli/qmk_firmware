@@ -35,6 +35,8 @@ enum layers {
 /*  */
 /* ALT TAB */
 bool is_alt_tab_active = false;
+#define MOUSE_TIMEOUT 10000  // 10 seconds in milliseconds
+uint32_t mouse_timer = 0;
 
 enum custom_keycodes {          // Make sure have the awesome keycode ready
     ALT_TAB         = SAFE_RANGE,
@@ -77,10 +79,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 /* ALT TAB END */
 
+// Modify layer_state_set_user
+layer_state_t layer_state_set_user(layer_state_t state) {
+    // Handle alt-tab
+    if (is_alt_tab_active) {
+        unregister_code(KC_LALT);
+        is_alt_tab_active = false;
+    }
+
+    // Handle mouse layer timeout
+    if (IS_LAYER_ON_STATE(state, _MOUSE)) {
+        if (mouse_timer == 0) {
+            mouse_timer = timer_read32();
+        } else if (timer_elapsed32(mouse_timer) > MOUSE_TIMEOUT) {
+            state = layer_state_set(state & ~(1UL << _MOUSE));
+            mouse_timer = 0;
+        }
+    } else {
+        mouse_timer = 0;
+    }
+
+    return state;
+}
+
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x5_3(
         // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-        LCTL_T(KC_Q),     KC_W,         KC_F,         KC_P,         KC_B,          KC_J,            KC_L,         KC_U,         KC_Y,    LCTL_T(KC_BSPC),
+        LCTL_T(KC_Q),     KC_W,         KC_F,         KC_P,         KC_B,          KC_J,            KC_L,         KC_U,         KC_Y,         TG(_MOUSE),
         // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
         LT(3,KC_A),   LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T),     KC_G,          KC_M,        LSFT_T(KC_N), LGUI_T(KC_E), LALT_T(KC_I), LT_FUNCTION_O,
         // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
