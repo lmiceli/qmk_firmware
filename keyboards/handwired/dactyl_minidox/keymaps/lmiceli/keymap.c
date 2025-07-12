@@ -24,12 +24,13 @@ el qmk_boot
 /* new for sync most of my existing keymaps */
 enum layers {
     _COLEMAK = 0,
-    _NAVIGATION,
-    _ARROW,
     _MOUSE,
+    _ARROW,
+    _NAVIGATION,
     _SYMBOL,
     _NUMBER,
     _FUNCTION,
+    _SERVICE,
 };
 
 /*  */
@@ -40,14 +41,15 @@ bool is_alt_tab_active = false;
 
 enum custom_keycodes {          // Make sure have the awesome keycode ready
     ALT_TAB         = SAFE_RANGE,
-    LT_NAV_ESC      = LT(_NAVIGATION, KC_ESC),
+    LT_MOUSE_H      = LT(_MOUSE, KC_H),
     LT_ARROW_SP     = LT(_ARROW, KC_SPC),
+    LT_NAV_ESC      = LT(_NAVIGATION, KC_ESC),
     LT_MOUSE_TAB    = LT(_MOUSE, KC_TAB),
     LT_FUNCTION_DEL = LT(_FUNCTION, KC_DEL),
     LT_NUMBER_BSP   = LT(_NUMBER, KC_BSPC),
     LT_SYMBOL_ENT   = LT(_SYMBOL, KC_ENT),
-    LT_MOUSE_H      = LT(_MOUSE, KC_H),
     LT_FUNCTION_O   = LT(_FUNCTION, KC_O),
+    LT_SERV_A       = LT(_SERVICE, KC_A),// todox: A is not necessary
 
     // for use in symbol layer to access numbers
     LT_NUMBER_QUES   = LT(_NUMBER, KC_QUES),
@@ -123,34 +125,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //                         LT_NAV_ESC,   LT_ARROW_BSPC    /**/  LT_FUNCTION_DEL, LT_NUMBER_SPC, LT_SYMBOL_ENT
         ),
 
-    /* DESKTOP NAVIGATION LAYER */
-    [_NAVIGATION] = LAYOUT_split_3x5_3(
-        _______, KC_BTN3      , KC_BTN2    , KC_BTN1      , _______,     LCAG(KC_1)  , LCAG(KC_2)  , LCAG(KC_3)  , LCAG(KC_4), LCAG(KC_5),
-        ALT_TAB, G(C(KC_LEFT)), G(C(KC_UP)), G(C(KC_RGHT)), ALT_TAB,     G(KC_PLUS)  , C(KC_LEFT)  , C(KC_RGHT)  , KC_VOLD   , KC_VOLU   ,
-        _______, _______      , _______    , ALT_TAB      , _______,     G(KC_MINS)  , RCS(KC_COMM), RCS( KC_DOT), KC_MPLY   , KC_MUTE   ,
-                                KC_BTN3    , KC_BTN1      , KC_BTN2,     LAG(KC_LEFT), RCS(KC_DEL) ,LAG(KC_RGHT)
+    [_MOUSE] = LAYOUT_split_3x5_3(
+// TG(_MOUSE), again here for togling back from this layer in the left side too
+        TG(_MOUSE), KC_BTN3, KC_BTN2, KC_BTN1,   G(KC_W),    /**/ KC_NO, KC_WH_U, KC_MS_U, KC_WH_D, _______,
 
-            ),
+        ALT_TAB,    KC_LALT, KC_LGUI, KC_LSFT  , ALT_TAB,    /**/ KC_NO, KC_MS_L, KC_MS_D,   KC_MS_R, KC_NO,
+
+        KC_WH_L,    KC_WH_U, ALT_TAB, KC_WH_D,   KC_WH_R,    /**/ KC_NO, KC_WH_L, KC_BTN1,   KC_WH_R, KC_NO,
+
+                          _______, _______,   KC_ENT,          KC_BTN3, KC_BTN1, KC_BTN2
+        ),
 
     [_ARROW] = LAYOUT_split_3x5_3(
 
-        KC_LCTL         , KC_BTN3, KC_BTN2, KC_BTN1, _______      ,     KC_PGUP   , KC_HOME, KC_UP  , KC_END , KC_PGDN   ,
-        ALT_TAB         , KC_LALT, KC_LGUI, KC_LSFT, ALT_TAB      ,     KC_F11    , KC_LEFT, KC_DOWN, KC_RGHT, KC_CAPS   ,
-        A(G(KC_LEFT))   , _______, _______, ALT_TAB, A(G(KC_RGHT)),     G(KC_PGUP), KC_F7  , KC_F8  , KC_F9  , G(KC_PGDN),
-                                         _______, _______, _______,     KC_DEL    , KC_BSPC, KC_PGDN
+        KC_LCTL, KC_BTN3, KC_BTN2, KC_BTN1, G(KC_W),     KC_PGUP   , KC_HOME, KC_UP  , KC_END , KC_PGDN   ,
+        ALT_TAB, KC_LALT, KC_LGUI, KC_LSFT, ALT_TAB,     KC_F11    , KC_LEFT, KC_DOWN, KC_RGHT, KC_CAPS   ,
+        KC_WH_L, KC_WH_U, ALT_TAB, KC_WH_D, KC_WH_R,     KC_F6,      KC_F7  , KC_F8  , KC_F9  , KC_F12,
+
+                          _______, _______, _______,     KC_DEL    , KC_BSPC, KC_PGDN
 
         ),
 
-    [_MOUSE] = LAYOUT_split_3x5_3(
+    /* DESKTOP NAVIGATION LAYER */
+    [_NAVIGATION] = LAYOUT_split_3x5_3(
+        LT_SERV_A, KC_BTN3,       KC_BTN2,     KC_BTN1,       G(KC_W),     LCAG(KC_1)  , LCAG(KC_2)  , LCAG(KC_3)  , LCAG(KC_4), LCAG(KC_5),
+        ALT_TAB,   G(C(KC_LEFT)), G(C(KC_UP)), G(C(KC_RGHT)), ALT_TAB,     G(KC_PLUS)  , C(KC_LEFT)  , C(KC_RGHT)  , KC_VOLD   , KC_VOLU   ,
+        KC_WH_L,   KC_WH_U,       ALT_TAB,     KC_WH_D,       KC_WH_R,     G(KC_MINS)  , RCS(KC_COMM), RCS( KC_DOT), KC_MPLY   , KC_MUTE   ,
 
-        QK_BOOT, KC_WH_U, ALT_TAB, KC_WH_D, KC_NO, /**/ KC_NO, KC_WH_U, KC_MS_U, KC_WH_D, KC_TRNS,
-
-        KC_NO,   KC_LALT, KC_LGUI, KC_LSFT, KC_NO, /**/ KC_NO, KC_MS_L, KC_MS_D, KC_MS_R, KC_NO,
-
-        KC_WH_U, KC_WH_U, KC_NO,   KC_WH_D, KC_NO, /**/ KC_NO, KC_WH_L, KC_BTN1,   KC_WH_R, KC_NO,
-
-                       KC_BTN2, KC_BTN1,  KC_BTN2,      KC_BTN3, KC_BTN1, KC_BTN2
-
+                                  KC_BTN3    , KC_BTN1      , KC_BTN2,     LAG(KC_LEFT), RCS(KC_DEL) ,LAG(KC_RGHT)
         ),
 
     // try? LSFT_T(KC_?), LGUI_T(KC_?), LALT_T(KC_?),  LCTL_T(KC_?)
@@ -179,8 +181,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LAYOUT_split_3x5_3(
             KC_F12, KC_F7, KC_F8, KC_F9, _______,      _______, _______, _______, KC_LCTL, _______,
             KC_F11, KC_F4, KC_F5, KC_F6, _______,      _______, KC_LSFT, KC_LGUI, KC_LALT, _______,
-            KC_F10, KC_F1, KC_F2, KC_F3,  KC_TAB,      _______, _______, _______, _______, QK_BOOT,
-                          KC_ESC, KC_SPC, KC_TAB,      KC_BSPC, KC_ENT, KC_LCTL)
+            KC_F10, KC_F1, KC_F2, KC_F3,  KC_TAB,      _______, _______, _______, _______, QK_BOOT,// todox remove later boot get from service
+                          KC_ESC, KC_SPC, KC_TAB,      KC_BSPC, KC_ENT, KC_LCTL
+            ),
+
+    /* func LAYER */
+    [_SERVICE] =
+        LAYOUT_split_3x5_3(
+            _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
+            _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
+            QK_BOOT, _______, _______, _______, _______,      _______, _______, _______, _______, QK_BOOT,
+                              _______, _______, _______,      _______, _______, _______
+            )
 };
 /*
  * test area
